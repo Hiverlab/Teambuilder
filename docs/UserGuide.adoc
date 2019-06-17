@@ -1,0 +1,395 @@
+= Team Builder - User Guide
+:site-section: UserGuide
+:toc:
+:toclevels: 3
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+endif::[]
+:repoURL: https://github.com/geezlouisee/bridgewater/main
+:bl: pass:[ +]
+
+By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
+
+[.text-justify]
+== Introduction
+
+Team Builder was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
+companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency and algorithmic
+decision when it comes to managing a company.
+
+One such tool that inspired us was the “Baseball cards”, a profiling tool that highlights a person’s strengths and their
+characteristics. Along with a “combiner” feature, the tool will be able to compare and analyses the key characteristics
+of each employee. It will help you to find the right person for the job based on their strengths.
+
+Thus, with that, Team Builder was created with the aim of improving the allocation of human resources to projects at
+Hiverlab. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in an efficient
+manner by leveraging on one another’s strengths.
+
+// tag::quickstart[]
+<<<
+[.text-justify]
+== Quick Start
+{bl}
+[blue]#Follow these steps to get _In-Credit-Ble_ up and running on your computer in no time!#
+
+[.text-left]
+.  Ensure you have [teal]#Java# version `[fuchsia]#9#` or later installed in your computer. You can download and install the required
+   Java Development Kit
+   link:https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase9-3934878.html[[blue]#here#]
+.  Download the latest `[fuchsia]#In-Credit-Ble.jar#` file link:{repoURL}/releases[[blue]#here#].
+.  Copy the file to the folder you want to use as the home folder for your finance tracker.
+.  Double-click the file to start the application. The GUI should appear in a few seconds as shown below.
+   The _In-Credit-Ble_ finance tracker is loaded with example expense records and budget is still not set.
+
+[TIP]
+Use the *`[fuchsia]#clear#`* command to remove all the example expenses to start a new Finance Tracker with no entries.
+
+{bl}
+
+.UI upon launching the application
+image::startUI.png[]
+
+{bl}
+
+.  Type the command in the command box and press kbd:[Enter] to execute it. +
+[navy]#e.g.# typing *`[fuchsia]#help#`* and pressing kbd:[Enter] will open the help window and show the list of commands.
+.  [teal]#Some example commands you can try#:
+
+* *`[fuchsia]#help#`* : opens the _In-Credit-Ble_ user guide.
+* *`[fuchsia]#set#`* : sets the total budget for Finance Tracker.
+* *`[fuchsia]#allocate#`* : allocates budget to a certain category (within the total budget).
+* *`[fuchsia]#spend#`* : adds an expense record to the Finance Tracker.
+.  Refer to [underline blue]#<<Features>># for details of each command.
+// end::quickstart[]
+
+{bl}
+
+<<<
+// tag::userinterface1[]
+[.text-justify]
+== Graphical User Interface Introduction
+{bl}
+[blue]#This section will explain to you the Graphical User Interface (GUI) of _In-Credit-Ble_ Finance Tracker.#
+The theme of the application has been set to `[fuchsia]#Light#`, which is different from the start up theme `[fuchsia]#Dark#`.
+{bl}
+{bl}
+
+.Graphical User Interface (When starting up)
+image::GUI_Diagram.png[width="600"]
+
+// end::userinterface1[]
+{bl}
+
+.Graphical User Interface (Upon using `summary` command)
+image::GUI_Diagram2.png[width="600"]
+
+{bl}
+// tag::userinterface2[]
+There are a total of 7 elements in the Graphical User Interface in _In-Credit-Ble_ Finance Tracker
+as denoted by the different coloured boxes above. The elements will be explained below.
+
+// end::userinterface2[]
+{bl}
+
+=== Menu Bar
+{bl}
+
+.Menu Bar
+image::Menu_bar.png[width="300"]
+{bl}
+This element is denoted by the [fuchsia]#pink# box.
+
+The menu bar can be used to:
+
+* Exit the program under btn:[File] tab.
+* Open the _Help_ page to view commands available under btn:[Help] tab.
+* Change the colour theme of the application under btn:[Theme] tab.
+
+
+{bl}
+// tag::userinterface3[]
+
+=== Records List Panel
+// end::userinterface3[]
+{bl}
+
+// tag::userinterface4[]
+.Record List Panel: Shows a list of your expense records
+image::Record_List_Panel.png[width="200"]
+{bl}
+This element is denoted by the [yellow]#yellow# box.
+
+In the Record List Panel, the list of all your expenditures are recorded here.
+This panel is scrollable to view all your expense records.
+
+To find specific entries based on `[fuchsia]#name#`, `[fuchsia]#category#` or `[fuchsia]#date#`, use the `[fuchsia]#search#` command.
+To list all your expense records again after searching for particular records,
+use the command `[fuchsia]#list#`.
+
+Each record is tagged with an *index number* before the record name.
+The index is used in commands such as `[fuchsia]#delete#`, `[fuchsia]#edit#` and `[fuchsia]#select#`.
+
+// end::userinterface4[]
+{bl}
+
+=== Budget Panel
+{bl}
+
+.Budget Panel: Shows your total spending against the total budget that you set
+image::BudgetPanel.png[width="250"]
+{bl}
+This element is denoted by the [green]#green# box.
+
+The budget panel gives you a simple yet effective overview of the total
+expenses spent so far against the budget that you set for yourself.
+
+As you add more expense records into the finance tracker,
+the budget panel will change colour according to how close you are to your budget.
+
+See:
+
+* `[fuchsia]#set#` command to see how to set a budget in the finance tracker.
+* `[fuchsia]#spend#` command to see how to add expense records into the finance tracker.
+
+{bl}
+
+.Budget progress bar turns orange to give a warning that you have almost reached your budget
+image::BudgetPanel_Orange.png[width="250"]
+{bl}
+
+.Budget progress bar turns red to give a warning that you have exceeded your budget.
+image::BudgetPanel_red.png[width="250"]
+{bl}
+
+* The budget progress bar will be [green]#*green*# if you are still within your budget as shown in Figure 6.
+* The budget progress bar will turn [orange]#*orange*# if your expenditure is above 80% of your total budget
+as shown in Figure 7.
+* The budget progress bar will turn [red]#*red*# if your expenditure exceeded your budget as shown in Figure 8.
+
+{bl}
+
+=== Browser Panel
+{bl}
+
+.Browser Panel: Shows the budget left, total budget and your current spending.
+image::browserpanel.png[width="250"]
+{bl}
+This element is denoted by the [maroon]#brown# box in Figure 2.
+
+The browser panel gives you a numerical summary of your total budget. The current budget shows how much more you can
+spend before you hit the budget that you have set.
+{bl}
+[NOTE]
+====
+The current budget will show a negative number should you exceed your budget to let you know
+the amount you have exceeded the budget that you set for yourself.
+====
+
+{bl}
+
+<<<
+=== Summary Panel
+{bl}
+
+.Summary Panel: Shows you a pie chart illustration of your current expenses
+image::summarypanel.png[width="400"]
+{bl}
+This element is denoted by the [red]#red# box in Figure 3.
+
+The summary panel gives you a visualisation of the summary of your current spending so far in
+different categories. To change the browser panel to summary panel, use the `[fuchsia]#summary#` command.
+To change back to the browser panel, simply enter the `[fuchsia]#summary#` command once again.
+
+{bl}
+
+=== Command Box and Result Display
+{bl}
+
+.Command Box and Result Display
+image::commandbox_resultdisplay.png[width="450"]
+{bl}
+These elements are denoted by the [black]#black# and [blue]#blue# boxes in Figures 2 and 3 respectively.
+
+The command box is the place for users to type in their commands.
+Refer to <<Features>> for details of each command.
+
+The result box displays the results after each command is executed.
+This is where the allocated category budgets will be shown when `[fuchsia]#show#` command is executed.
+
+{bl}
+
+<<<
+=== Status Footer Bar
+{bl}
+
+.Status Footer Bar
+image::statusfooterbar.png[]
+{bl}
+This element is denoted by the [purple]#purple# box in Figures 2 and 3.
+The left side of the status footer bar shows the time and date of the last update to the finance tracker.
+The right side of the status footer bar shows where the storage file for the updated data is saved to.
+
+{bl}
+
+<<<
+[.text-justify]
+[[Features]]
+== Features
+{bl}
+[blue]#This section describes the various features _In-Credit-Ble_ has to offer.# Examples are also included to give you
+step-by-step instructions on how to use the different commands.
+
+[IMPORTANT]
+====
+*[navy]#Command Format#*
+
+* Words in `[fuchsia]#UPPER_CASE#` are the parameters to be supplied by the user [navy]#e.g.# in `[fuchsia]#set $/AMOUNT#`,
+`[fuchsia]#AMOUNT#` is a parameter which can be used as `[fuchsia]#set $/200.00#`.
+* Items in square brackets are optional [navy]#e.g# `[fuchsia]#search FLAG KEYWORD [MORE_KEYWORDS]#` can be used as `[fuchsia]#search -cat clothes#` or as
+`[fuchsia]#search -name cake lunch#`.
+* Items with `[fuchsia]#…#`​ after them can be used multiple times including zero times.
+* If you provide more than the number of specified parameters
+([navy]#e.g.# `[fuchsia]#set $/500 $/400#` or `[fuchsia]#spend n/Chicken n/Duck $/10 $/20 c/Food c/Lunch#`), the latest parameter is taken
+([navy]#e.g.# Budget is set to $400, Record added is Name: Duck, Amount: $20, Category: Lunch).
+====
+{bl}
+
+<<<
+=== Combiner
+
+=== Upcoming Features
+
+==== More sophisticated “advanced search”?`[yellow]#[coming in v2.0]#`
+Like can have more specifications like # of people you want in the team, etc
+
+==== Integration of Trello board into the system `[yellow]#[coming in v2.0]#`
+
+https://developers.trello.com/docs/boards
+
+==== Enhanced Algorithm `[fuchsia]#CategoryBudgets#` to be shown `[yellow]#[coming in v2.0]#`
+
+Can have a more complicated algorithm that takes into consideration chemistry/compatibility between members?
+
+<<<
+[.text-justify]
+== FAQ
+
+{bl}
+
+*Q*: [navy]#How do I transfer my data to another Computer?#
+
+*A*: You can install the app in the other computer and overwrite the empty data file it creates with the file
+that contains the data of your previous _In-Credit-Ble_ folder.
+
+*Q*: [navy]#Will the application support different currency?#
+
+*A*: At the current version, the application is unable to support transactions record in different currency.
+You will need to calculate and enter your input based on your local currency.
+
+_In-Credit-Ble_  aims to support multi-currency transactions in `[yellow]#v2.0#`.
+
+{bl}
+
+<<<
+[.text-justify]
+== Command Summary
+
+[blue]#All of _In-Credit-Ble's_ commands are listed here!#
+
+{bl}
+
+=== Budget Management
+{bl}
+
+[cols="22%,<23%,<25%,<30%",options="header",]
+|=======================================================================
+| Command | Command Format | Alias | Example
+| Set budget | `set $/AMOUNT` |- | `set $/500`
+| Allocate budgeting based on categories | `allocate $/AMOUNT c/CATEGORY` | `allo` | `allocate $/100 c/Shopping`
+| Show allocated category budget and spending | `show` | `showCatBudget` | -
+
+|=======================================================================
+
+{bl}
+
+=== Expense Entry Management
+{bl}
+
+[cols="22%,<23%,<25%,<30%",options="header",]
+|=======================================================================
+| Command | Command Format | Alias | Example
+| Add expense | `spend n/NAME $/AMOUNT [d/DATE] c/CATEGORY [r/Description]` | `add` | `spend n/movie $/10
+  d/16/03/2019 c/Entertainment r/Avengers: Endgame`
+| Edit an entry | `edit INDEX [n/NAME] [$/AMOUNT] [d/DATE] [c/CATEGORY] [r/DESCRIPTION]` +
+*At least one of the optional parameters must be entered.| `e` | `edit 1 n/burger c/Food`
+| Select an entry | `select INDEX` | `s`, `sel` | `select 3`
+| Delete an entry | `delete INDEX` | `d`, `del` | `delete 2`
+
+|=======================================================================
+{bl}
+
+=== Records Management
+{bl}
+
+[cols="22%,<23%,<25%,<30%",options="header",]
+|=======================================================================
+| Command | Command Format | Alias | Example
+| List all entries | `list` | `l`, `ls` | -
+| Locate entry based on name, category or date |`search FLAG* KEYWORD [MORE_KEYWORDS]` | `find` | `search -cat Food`
+| Sort the entries based on name, category, date, amount | `sort FLAG* [ORDER]**` | - | `sort -name`
+| Reverse all entries | `reverse` | `rev` | -
+| Show summary of records | `summary [#/PERIOD_AMOUNT] [p/PERIOD]` | `overview` | `summary #/5 p/d` +
+Shows summary for past 5 days
+
+|=======================================================================
+*Valid flags: `-name`-> Name; `-cat` -> Category; `-date` -> Date; `-amount` -> Amount (only for `sort` command);
+
+**Valid orders: `-asc` -> ascending order; `-desc` -> descending order
+{bl}
+
+<<<
+=== Miscellaneous
+{bl}
+
+[cols="22%,<23%,<25%,<30%",options="header",]
+|=======================================================================
+| Command | Command Format | Alias | Example
+| Set data file | `setfile f/FILENAME` | - | `setfile f/finance`
+| Help | `help` | - | -
+| Undo previous command | `undo` | `u` | -
+| Redo previously undone command | `redo` | `r` | -
+| Change colour theme of application | `theme COLOURTHEME*` | `colour` | `theme light`
+| List entered commands | `history` | `h`, `hist` | -
+| Clear all entries | `clear` | `c`, `clr` | -
+| Exit the program | `exit` | `quit` | -
+
+|=======================================================================
+*Valid colour themes: `light`, `dark`, `pink`, `blue`;
+{bl}
+
+<<<
+[.text-justify]
+== Glossary
+{bl}
+
+Amount::
+The amount of money for expenditure and budget.
+
+Category::
+The category that an entry belongs to.
+
+Entry::
+A listed item/activity tracked by the application.  It generally consists of the name, amount, date, category and with an
+optional description field.
+
+Records::
+The list of all entries stored in the application.
