@@ -20,39 +20,31 @@ By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
 
 [.text-justify]
 == Introduction
-[blue]#Welcome to the _In-Credit-Ble_ Developer Guide!#
+Team Builder was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
+companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency and algorithmic
+decision when it comes to managing a company.
 
-_In-Credit-Ble_ is a finance tracker application created to simplify the managing and tracking
-of the user’s personal finances. With _In-Credit-Ble_, users will be able to stick to their budget
-and be more aware of their spending habits.
+One such tool that inspired us was the “Baseball cards”, a profiling tool that highlights a person’s strengths and their
+characteristics. Along with a “combiner” feature, the tool will be able to compare and analyse the key characteristics
+of each employee. It will help you to find the right person for the job based on their strengths.
 
-This developer guide specifies the design and implementation of _In-Credit-Ble_. The intended audience of
-this document is the developers, designers and software testers of our application.
+Thus, with that, Team Builder was created with the aim of improving the allocation of human resources to projects at
+Hiverlab Pte Ltd. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in
+an efficient manner by leveraging on one another’s strengths.
 
-Please continue on to the <<Setting Up, [underline blue]#Setting Up#>> section to get started. You can also read <<AboutUs#, [blue]#AboutUs.adoc#>>
-and <<ContactUs#, [blue]#ContactUs.adoc#>> for more information on how to contact us!
+This developer guide specifies the design and implementation of Team Builder. The intended audience of this document is
+the developers, designers and software testers of our application.
 
-<<<
 [.text-justify]
 == Setting Up
-{bl}
 
-=== Prerequisites
-{bl}
+Before starting, ensure that you have the following installed:
 
-. *JDK `[fuchsia]#9#`* or later
-+
-[WARNING]
-JDK `[fuchsia]#10#` on Windows will fail to run tests in <<UsingGradle#Running-Tests, [blue]#headless mode#>> due to a https://github.com/javafxports/openjdk-jfx/issues/66[[blue]#JavaFX bug#].
-Windows developers are highly recommended to use JDK `[fuchsia]#9#`.
+. Node.js
+. Npm (Node Package Manager)
+. Then, download the project (from Github & link to the Firebase console in your computer)
 
-. *IntelliJ* IDE
-+
-[NOTE]
-IntelliJ by default has Gradle and JavaFx plugins installed. +
-Do not disable them. If you have disabled them, go to menu:File[Settings > Plugins] to re-enable them.
-
-{bl}
+Else, please follow the steps below:
 
 === Setting up the project in your computer
 {bl}
@@ -76,31 +68,9 @@ This will generate all resources required by the application and tests.
 {bl}
 
 === Verifying the setup
-{bl}
 
 . Run `[fuchsia]#seedu.finance.MainApp#` and try a few commands.
 . <<Testing,[underline blue]#Run the tests#>> to ensure they all pass.
-
-{bl}
-
-<<<
-=== Configurations to do before writing code
-{bl}
-
-==== Configuring the coding style
-{bl}
-This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc[[blue]#oss-generic coding standards#]. IntelliJ's default style is mostly compliant with ours but it uses a different import order from ours. To rectify,
-
-. Go to menu:File[Settings...] (Windows/Linux), or menu:IntelliJ IDEA[Preferences...] (macOS).
-. Select menu:Editor[Code Style > Java]
-. Click on the btn:[Imports] tab to set the order.
-
-* For btn:[Class count to use import with '\*'] and btn:[Names count to use static import with '*']: Set to `[fuchsia]#999#` to prevent IntelliJ from contracting the import statements.
-* For btn:[Import Layout]: The order is `[fuchsia]#import static all other imports#`, `[fuchsia]#import java.\*#`, `[fuchsia]#import javax.*#`, `[fuchsia]#import org.\*#`, `[fuchsia]#import com.*#`, `[fuchsia]#import all other imports#`. Add a btn:[<blank line>] between each `[fuchsia]#import#`.
-
-Optionally, you can follow the <<UsingCheckstyle#, [blue]#UsingCheckstyle.adoc#>> document to configure Intellij to check style-compliance as you write code.
-
-{bl}
 
 ==== Updating documentation to match your fork
 {bl}
@@ -114,35 +84,25 @@ If you plan to develop this fork as a separate product (i.e. instead of contribu
 
 {bl}
 
-==== Setting up CI
-{bl}
-Set up Travis to perform Continuous Integration (CI) for your fork. See <<UsingTravis#, [blue]#UsingTravis.adoc#>> to learn how to set it up.
+=== Angular
 
-After setting up Travis, you can optionally set up coverage reporting for your team fork (see <<UsingCoveralls#, [blue]#UsingCoveralls.adoc#>>).
+=== Firebase
 
-[NOTE]
-Coverage reporting could be useful for a team repository that hosts the final version but it is not that useful for your personal fork.
+. Install the Firebase CLI
+. Initialise your project
+. Deploy to your site
 
-Optionally, you can set up AppVeyor as a second CI (see <<UsingAppVeyor#, [blue]#UsingAppVeyor.adoc#>>).
+For more information about setting up Firebase and connecting it to the project on the Firebase console, you may want to
+refer to Firebase’s documentation https://firebase.google.com/docs/hosting/quickstart[here].
 
-[NOTE]
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
-
-{bl}
-
-==== Getting started with coding
-{bl}
-When you are ready to start coding,
-
-1. Get some sense of the overall design by reading [underline blue]#<<Design-Architecture>>#.
-2. Take a look at [underline blue]#<<GetStartedProgramming>>#.
-
-{bl}
 
 <<<
 [.text-justify]
 == Design
 {bl}
+
+This web app was made using HTML/CSS/TS and is largely implemented based on the Angular framework. This framework was
+chosen to make the code cleaner, as compared to not using any Javascript frameworks at all.
 
 [[Design-Architecture]]
 === Architecture
