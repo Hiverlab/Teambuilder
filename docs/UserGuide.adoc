@@ -31,7 +31,7 @@ characteristics. Along with a “combiner” feature, the tool will be able to c
 of each employee. It will help you to find the right person for the job based on their strengths.
 
 Thus, with that, Team Builder was created with the aim of improving the allocation of human resources to projects at
-Hiverlab. With the Gallup StrengthsFinder test in mind, (name) aims to delegate desirable team members in an efficient
+Hiverlab. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in an efficient
 manner by leveraging on one another’s strengths.
 
 // tag::quickstart[]
