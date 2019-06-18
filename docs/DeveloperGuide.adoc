@@ -4,7 +4,7 @@
 :toc-title:
 :toc-placement: preamble
 :sectnums:
-:imagesDir: images
+:imagesDir: src/assets/img
 :stylesDir: stylesheets
 :xrefstyle: full
 ifdef::env-github[]
@@ -99,178 +99,30 @@ refer to Firebase’s documentation https://firebase.google.com/docs/hosting/qui
 <<<
 [.text-justify]
 == Design
-{bl}
 
-This web app was made using HTML/CSS/TS and is largely implemented based on the Angular framework. This framework was
-chosen to make the code cleaner, as compared to not using any Javascript frameworks at all.
+_TeamBuilder_ is designed to be a web app, implemented using an Angular framework. More details on its implementation will
+be provided in Chapter 4.
 
 [[Design-Architecture]]
 === Architecture
-{bl}
 
-.Architecture Diagram
-image::Architecture.png[width="600"]
+As Angular is largely based on the Model-View-Controller (MVC) framework, this makes it convenient for front-end testing
+for _TeamBuilder_ .
 
-{bl}
-The *_Architecture Diagram_* above explains the high-level design of _In-Credit-Ble_. Given below is a quick overview of each component.
+.Architecture Diagram of TeamBuilder
+image::architecture.png[width="600"]
 
-[TIP]
-The `[fuchsia]#.pptx#` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[[blue]#diagrams#] folder.
-To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose btn:[Save as picture].
+The *_Architecture Diagram_* above explains the high-level design of _TeamBuilder_.
+Given below is a quick overview of each component.
 
-`[fuchsia]#Main#` has only one class called link:{repoURL}/src/main/java/seedu/finance/MainApp.java[`[blue]#MainApp#`]. It is responsible for,
+* *Model*: Corresponds to all data-related logic that the user works with.
+* *View*: Used for the UI logic of the application. Includes the html/css/ts files.
+* *Controller*: Acts as an interface between Model and View components, it manipulates data using the Model component
+and interact with the Views to render the final output.
 
-* App launch: Initializes the components in the correct sequence, and connects them up with each other.
-* App shut down: Shuts down the components and invokes cleanup method where necessary.
-
-{bl}
-<<Design-Commons,*`[underline blue]#Commons#`*>> represents a collection of classes used by multiple other components.
-The following class plays an important role at the architecture level:
-
-* `[fuchsia]#LogsCenter#` : Used by many classes to write log messages to the App's log file.
-
-{bl}
-The rest of the App consists of four components.
-
-* <<Design-Ui,*`[underline blue]#UI#`*>>: The UI of the App.
-* <<Design-Logic,*`[underline blue]#Logic#`*>>: The command executor.
-* <<Design-Model,*`[underline blue]#Model#`*>>: Holds the data of the App in-memory.
-* <<Design-Storage,*`[underline blue]#Storage#`*>>: Reads data from, and writes data to, the hard disk.
-
-{bl}
-Each of the four components
-
-* Defines its _API_ in an `[fuchsia]#interface#` with the same name as the Component.
-* Exposes its functionality using a `[fuchsia]#{Component Name}Manager#` class.
-
-For example, the `[fuchsia]#Logic#` component (see the class diagram given below) defines its API in the `[fuchsia]#Logic.java#` interface and
-exposes its functionality using the `[fuchsia]#LogicManager.java#` class.
-
-{bl}
-
-.Class Diagram of the Logic Component
-image::LogicClassDiagram.png[width="700"]
-
-{bl}
-
-<<<
-[discrete]
-==== How do the architecture components interact with each other?
-{bl}
-
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `[fuchsia]#delete 1#`.
-{bl}
-
-.Component interactions for `[fuchsia]#delete 1#` command
-image::SDforDeleteRecord.png[width="800"]
-
-{bl}
-
-The sections below give more details of each component.
-
-{bl}
-
-<<<
-// tag::UI[]
-[[Design-Ui]]
-=== UI component
-
-.Structure of the UI Component
-image::UiClassDiagram.png[width="700"]
-
-{bl}
-*API* : link:{repoURL}/src/main/java/seedu/finance/ui/Ui.java[`[blue]#Ui.java#`]
-
-The UI consists of a `[fuchsia]#MainWindow#` that is made up of parts [navy]#e.g.# `[fuchsia]#CommandBox#`, `[fuchsia]#ResultDisplay#`, `[fuchsia]#RecordListPanel#`,
-`[fuchsia]#StatusBarFooter#`, `[fuchsia]#BrowserPanel#`, `[fuchsia]#BudgetPanel#`, `[fuchsia]#SummaryPanel#` etc. All these, including the `[fuchsia]#MainWindow#`,
-inherit from the abstract `[fuchsia]#UiPart#` class.
-
-The `[fuchsia]#UI#` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `[fuchsia]#.fxml#` files that are in the `[fuchsia]#src/main/resources/view#` folder.
-For example, the layout of the link:{repoURL}/src/main/java/seedu/finance/ui/MainWindow.java[`[blue]#MainWindow#`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`[blue]#MainWindow.fxml#`].
-
-The `[fuchsia]#UI#` component,
-
-* Executes user commands using the `[fuchsia]#Logic#` component.
-* Listens for changes to `[fuchsia]#Model#` data so that the UI can be updated with the modified data.
-// end::UI[]
-
-<<<
-// tag::logic[]
-[[Design-Logic]]
-=== Logic component
-{bl}
-
-[[fig-LogicClassDiagram]]
-.Structure of the Logic Component
-image::LogicClassDiagram.png[width="700"]
-
-{bl}
-*API* :
-link:{repoURL}/src/main/java/seedu/finance/logic/Logic.java[`[blue]#Logic.java#`]
-
-.  `[fuchsia]#Logic#` uses the `[fuchsia]#FinanceTrackerParser#` class to parse the user command.
-.  This results in a `[fuchsia]#Command#` object which is executed by the `[fuchsia]#LogicManager#`.
-.  The command execution can affect the `[fuchsia]#Model#` ([navy]#e.g.# adding a record).
-.  The result of the command execution is encapsulated as a `[fuchsia]#CommandResult#` object which is passed back to the `[fuchsia]#Ui#`.
-.  In addition, the `[fuchsia]#CommandResult#` object can also instruct the `[fuchsia]#Ui#` to perform certain actions, such as displaying
-help to the user.
-// end::logic[]
-Given below is the Sequence Diagram for interactions within the `[fuchsia]#Logic#` component for the `[fuchsia]#execute("delete 1")#` API call.
-{bl}
-
-.Interactions Inside the Logic Component for the `[fuchsia]#delete 1#` Command
-image::DeletePersonSdForLogic.png[width="800"]
-
-{bl}
-
-// tag::model[]
-[[Design-Model]]
-=== Model component
-{bl}
-
-.Structure of the Model Component
-image::ModelClassDiagram.png[width="700"]
-
-{bl}
-*API* : link:{repoURL}/src/main/java/seedu/finance/model/Model.java[`[blue]#Model.java#`]
-
-The `[fuchsia]#Model#` component,
-
-* stores a `[fuchsia]#UserPref#` object that represents the user's preferences.
-* stores the Finance Tracker data.
-* exposes an unmodifiable `[fuchsia]#ObservableList<Record>#` that can be 'observed' [navy]#e.g.# the UI can be bound to this list so
-that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-// end::model[]
-
-{bl}
-
-
-// tag::storage[]
-[[Design-Storage]]
-=== Storage component
-{bl}
-
-.Structure of the Storage Component
-image::StorageClassDiagram.png[width="700"]
-
-{bl}
-*API* : link:{repoURL}/src/main/java/seedu/finance/storage/Storage.java[`[blue]#Storage.java#`]
-
-The `[fuchsia]#Storage#` component,
-
-* can save `[fuchsia]#UserPref#` objects in json format and read it back.
-* can save the Finance Tracker data in json format and read it back.
-// end::storage[]
-
-{bl}
-
-[[Design-Commons]]
-=== Common classes
-{bl}
-
-Classes used by multiple components are in the `[fuchsia]#seedu.finance.commons#` package.
-
+Additionally, due to the Angular framework, the architecture of TeamBuilder is also largely component-based.
+Each component consists of some metadata, an HTML template and logic - all of which controls a patch of screen called a
+view.
 
 <<<
 [.text-justify]
