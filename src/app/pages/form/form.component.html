@@ -6,7 +6,7 @@
 </div>
 
 <!-- Page content to fill in form-->
-<form>
+<form #projectForm="ngForm" (ngSubmit)="submit()" novalidate>
   <!-- Project Classification-->
   <div class="container-fluid mt--7">
     <div class="row">
@@ -20,25 +20,10 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="custom-control custom-control-alternative custom-radio mb-3">
-              <input name="custom-radio-1" class="custom-control-input" id="customRadio1" type="radio">
-              <label class="custom-control-label" for="customRadio1">Event/Workshop</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-radio mb-3">
-              <input name="custom-radio-1" class="custom-control-input" id="customRadio2" type="radio">
-              <label class="custom-control-label" for="customRadio2">Developing Storyhive(New solutions)</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-radio mb-3">
-              <input name="custom-radio-1" class="custom-control-input" id="customRadio3" type="radio">
-              <label class="custom-control-label" for="customRadio3">360 Production</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-radio mb-3">
-              <input name="custom-radio-1" class="custom-control-input" id="customRadio4" type="radio">
-              <label class="custom-control-label" for="customRadio4">Presenting ideas to clients</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-radio mb-3">
-              <input name="custom-radio-1" class="custom-control-input" id="customRadio5" type="radio">
-              <label class="custom-control-label" for="customRadio5">Training solutions (Liaising with HR)</label>
+            <div class="custom-control custom-control-alternative custom-radio mb-3"
+            *ngFor="let category of categories">
+              <input name="category" class="custom-control-input" id="{{category.name}}" type="radio" [value]="category.value" [(ngModel)]="formModel.category">
+              <label class="custom-control-label" for="{{category.name}}">{{category.name}}</label>
             </div>
           </div>
         </div>
@@ -132,9 +117,7 @@
         </div>
       </div>
     </div>
-
-    {{newData}}
     <!-- Submit Button -->
-    <br> <button type="button" class="btn btn-danger btn-lg btn-block">Submit</button>
+    <br> <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
   </div>
 </form>

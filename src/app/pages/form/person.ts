@@ -9,7 +9,4 @@ export class Person {
   //constructor
   constructor() { }
 
-  getName() {
-    return this.name;
-  }
 }
