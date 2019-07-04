@@ -1,4 +1,4 @@
-= Team Builder - User Guide
+= TeamBuilder - User Guide
 :site-section: UserGuide
 :toc:
 :toclevels: 3

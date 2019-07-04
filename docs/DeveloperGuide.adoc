@@ -1,4 +1,4 @@
-= Team Builder - Developer Guide
+= TeamBuilder - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -20,19 +20,19 @@ By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
 
 [.text-justify]
 == Introduction
-Team Builder was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
-companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency and algorithmic
-decision when it comes to managing a company.
+This Bridgewater tool _TeamBuilder_ was inspired by office tools adopted by Bridgewater Associates, one of the largest
+investment management companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency
+and algorithmic decision when it comes to managing a company.
 
 One such tool that inspired us was the “Baseball cards”, a profiling tool that highlights a person’s strengths and their
 characteristics. Along with a “combiner” feature, the tool will be able to compare and analyse the key characteristics
 of each employee. It will help you to find the right person for the job based on their strengths.
 
-Thus, with that, Team Builder was created with the aim of improving the allocation of human resources to projects at
-Hiverlab Pte Ltd. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in
+Thus, with that, _TeamBuilder_ was created with the aim of improving the allocation of human resources to projects at
+Hiverlab Pte Ltd. With the Gallup StrengthsFinder test in mind, _TeamBuilder_ aims to delegate desirable team members in
 an efficient manner by leveraging on one another’s strengths.
 
-This developer guide specifies the design and implementation of Team Builder. The intended audience of this document is
+This developer guide specifies the design and implementation of _TeamBuilder_. The intended audience of this document is
 the developers, designers and software testers of our application.
 
 [.text-justify]
@@ -46,43 +46,18 @@ Before starting, ensure that you have the following installed:
 
 Else, please follow the steps below:
 
-=== Setting up the project in your computer
-{bl}
-
-. Fork this repo, and clone the fork to your computer.
-. Open IntelliJ (if you are not in the welcome screen, click menu:File[Close Project] to close the existing project dialog first).
-. Set up the correct JDK version for Gradle.
-.. Click menu:Configure[Project Defaults > Project Structure]
-.. Click btn:[New...] and find the directory of the JDK.
-. Click btn:[Import Project]
-. Locate the `[fuchsia]#build.gradle#` file and select it. Click btn:[OK]
-. Click btn:[Open as Project]
-. Click btn:[OK] to accept the default settings.
-. Open a console and run the command `[fuchsia]#gradlew processResources#` (Mac/Linux: `[fuchsia]#./gradlew processResources#`). It should finish with the `[fuchsia]#BUILD SUCCESSFUL#` message. +
-This will generate all resources required by the application and tests.
-. Open link:{repoURL}/src/main/java/seedu/finance/ui/MainWindow.java[`[blue]#MainWindow.java#`] and check for any code errors.
-.. Due to an ongoing https://youtrack.jetbrains.com/issue/IDEA-189060[[blue]#issue#] with some of the newer versions of IntelliJ, code errors may be detected even if the project can be built and run successfully.
-.. To resolve this, place your cursor over any of the code section highlighted in [red]#red#. Press kbd:[ALT + ENTER], and select btn:[Add '--add-modules=...' to module compiler options] for each error.
-. Repeat this for the test folder as well ([navy]#e.g.# check link:{repoURL}/src/test/java/seedu/finance/ui/HelpWindowTest.java[`[blue]#HelpWindowTest.java#`] for code errors, and if so, resolve it the same way).
-
-{bl}
-
 === Verifying the setup
 
-. Run `[fuchsia]#seedu.finance.MainApp#` and try a few commands.
-. <<Testing,[underline blue]#Run the tests#>> to ensure they all pass.
+. ng serve(?) and see if everything is okay
 
 ==== Updating documentation to match your fork
-{bl}
-After forking the repo, the documentation will still refer to the `[fuchsia]#CS2103-AY1819S2-W17-3/main#` repo.
 
-If you plan to develop this fork as a separate product (i.e. instead of contributing to `[fuchsia]#In-Credit-Ble#`), you should do the following:
+After forking the repo, the documentation will still refer to the `geezlouisee\bridgewater` repo.
 
-. Configure the <<Docs-SiteWideDocSettings, [underline blue]#site-wide documentation settings#>> in link:{repoURL}/build.gradle[`[blue]#build.gradle#`], such as the `[fuchsia]#site-name#`, to suit your own project.
+If you plan to develop this fork as a separate product (i.e. instead of contributing to `TeamBuilder`), you should do the following:
 
-. Replace the URL in the attribute `[fuchsia]#repoURL#` in link:{repoURL}/docs/DeveloperGuide.adoc[`[blue]#DeveloperGuide.adoc#`] and link:{repoURL}/docs/UserGuide.adoc[`[blue]#UserGuide.adoc#`] with the URL of your fork.
-
-{bl}
+. Replace the URL in the attribute `[fuchsia]#repoURL#` in link:{repoURL}/docs/DeveloperGuide.adoc[`[blue]#DeveloperGuide.adoc#`]
+and link:{repoURL}/docs/UserGuide.adoc[`[blue]#UserGuide.adoc#`] with the URL of your fork.
 
 === Angular
 
