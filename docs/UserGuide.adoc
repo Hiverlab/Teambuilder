@@ -54,27 +54,10 @@ All it takes is 3 simple steps to get _TeamBuilder_ up and running:
 [.text-justify]
 [[Features]]
 == Features
-{bl}
-[blue]#This section describes the various features _In-Credit-Ble_ has to offer.# Examples are also included to give you
-step-by-step instructions on how to use the different commands.
+This section describes the various features utilised by _TeamBuilder_.
 
-[IMPORTANT]
-====
-*[navy]#Command Format#*
-
-* Words in `[fuchsia]#UPPER_CASE#` are the parameters to be supplied by the user [navy]#e.g.# in `[fuchsia]#set $/AMOUNT#`,
-`[fuchsia]#AMOUNT#` is a parameter which can be used as `[fuchsia]#set $/200.00#`.
-* Items in square brackets are optional [navy]#e.g# `[fuchsia]#search FLAG KEYWORD [MORE_KEYWORDS]#` can be used as `[fuchsia]#search -cat clothes#` or as
-`[fuchsia]#search -name cake lunch#`.
-* Items with `[fuchsia]#…#`​ after them can be used multiple times including zero times.
-* If you provide more than the number of specified parameters
-([navy]#e.g.# `[fuchsia]#set $/500 $/400#` or `[fuchsia]#spend n/Chicken n/Duck $/10 $/20 c/Food c/Lunch#`), the latest parameter is taken
-([navy]#e.g.# Budget is set to $400, Record added is Name: Duck, Amount: $20, Category: Lunch).
-====
-{bl}
-
-<<<
 === Combiner
+After selecting your options, you will then be redirected to a page ...
 
 === Upcoming Features
 
@@ -118,85 +101,6 @@ _In-Credit-Ble_  aims to support multi-currency transactions in `[yellow]#v2.0#`
 
 {bl}
 
-<<<
-[.text-justify]
-== Command Summary
-
-[blue]#All of _In-Credit-Ble's_ commands are listed here!#
-
-{bl}
-
-=== Budget Management
-{bl}
-
-[cols="22%,<23%,<25%,<30%",options="header",]
-|=======================================================================
-| Command | Command Format | Alias | Example
-| Set budget | `set $/AMOUNT` |- | `set $/500`
-| Allocate budgeting based on categories | `allocate $/AMOUNT c/CATEGORY` | `allo` | `allocate $/100 c/Shopping`
-| Show allocated category budget and spending | `show` | `showCatBudget` | -
-
-|=======================================================================
-
-{bl}
-
-=== Expense Entry Management
-{bl}
-
-[cols="22%,<23%,<25%,<30%",options="header",]
-|=======================================================================
-| Command | Command Format | Alias | Example
-| Add expense | `spend n/NAME $/AMOUNT [d/DATE] c/CATEGORY [r/Description]` | `add` | `spend n/movie $/10
-  d/16/03/2019 c/Entertainment r/Avengers: Endgame`
-| Edit an entry | `edit INDEX [n/NAME] [$/AMOUNT] [d/DATE] [c/CATEGORY] [r/DESCRIPTION]` +
-*At least one of the optional parameters must be entered.| `e` | `edit 1 n/burger c/Food`
-| Select an entry | `select INDEX` | `s`, `sel` | `select 3`
-| Delete an entry | `delete INDEX` | `d`, `del` | `delete 2`
-
-|=======================================================================
-{bl}
-
-=== Records Management
-{bl}
-
-[cols="22%,<23%,<25%,<30%",options="header",]
-|=======================================================================
-| Command | Command Format | Alias | Example
-| List all entries | `list` | `l`, `ls` | -
-| Locate entry based on name, category or date |`search FLAG* KEYWORD [MORE_KEYWORDS]` | `find` | `search -cat Food`
-| Sort the entries based on name, category, date, amount | `sort FLAG* [ORDER]**` | - | `sort -name`
-| Reverse all entries | `reverse` | `rev` | -
-| Show summary of records | `summary [#/PERIOD_AMOUNT] [p/PERIOD]` | `overview` | `summary #/5 p/d` +
-Shows summary for past 5 days
-
-|=======================================================================
-*Valid flags: `-name`-> Name; `-cat` -> Category; `-date` -> Date; `-amount` -> Amount (only for `sort` command);
-
-**Valid orders: `-asc` -> ascending order; `-desc` -> descending order
-{bl}
-
-<<<
-=== Miscellaneous
-{bl}
-
-[cols="22%,<23%,<25%,<30%",options="header",]
-|=======================================================================
-| Command | Command Format | Alias | Example
-| Set data file | `setfile f/FILENAME` | - | `setfile f/finance`
-| Help | `help` | - | -
-| Undo previous command | `undo` | `u` | -
-| Redo previously undone command | `redo` | `r` | -
-| Change colour theme of application | `theme COLOURTHEME*` | `colour` | `theme light`
-| List entered commands | `history` | `h`, `hist` | -
-| Clear all entries | `clear` | `c`, `clr` | -
-| Exit the program | `exit` | `quit` | -
-
-|=======================================================================
-*Valid colour themes: `light`, `dark`, `pink`, `blue`;
-{bl}
-
-<<<
-[.text-justify]
 == Glossary
 {bl}
 
