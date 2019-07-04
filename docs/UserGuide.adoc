@@ -85,34 +85,11 @@ current projects are and possibly play a part in helping with the assignment of 
 [.text-justify]
 == FAQ
 
-{bl}
+*Q*: How do I ...?
 
-*Q*: [navy]#How do I transfer my data to another Computer?#
-
-*A*: You can install the app in the other computer and overwrite the empty data file it creates with the file
-that contains the data of your previous _In-Credit-Ble_ folder.
-
-*Q*: [navy]#Will the application support different currency?#
-
-*A*: At the current version, the application is unable to support transactions record in different currency.
-You will need to calculate and enter your input based on your local currency.
-
-_In-Credit-Ble_  aims to support multi-currency transactions in `[yellow]#v2.0#`.
-
-{bl}
+*A*: You can ...
 
 == Glossary
-{bl}
 
-Amount::
-The amount of money for expenditure and budget.
-
-Category::
-The category that an entry belongs to.
-
-Entry::
-A listed item/activity tracked by the application.  It generally consists of the name, amount, date, category and with an
-optional description field.
-
-Records::
-The list of all entries stored in the application.
+Trello::
+A web-based list-making application that is used to keep track of projects and current workload.
