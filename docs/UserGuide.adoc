@@ -22,56 +22,33 @@ By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
 [.text-justify]
 == Introduction
 
-Team Builder was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
+_TeamBuilder_ was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
 companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency and algorithmic
 decision when it comes to managing a company.
 
 One such tool that inspired us was the “Baseball cards”, a profiling tool that highlights a person’s strengths and their
-characteristics. Along with a “combiner” feature, the tool will be able to compare and analyses the key characteristics
+characteristics. Along with a “combiner” feature, the tool will be able to compare and analyse the key characteristics
 of each employee. It will help you to find the right person for the job based on their strengths.
 
-Thus, with that, Team Builder was created with the aim of improving the allocation of human resources to projects at
-Hiverlab. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in an efficient
-manner by leveraging on one another’s strengths.
+Thus, with that, _TeamBuilder_ was created with the aim of improving the allocation of human resources to projects at
+Hiverlab. With the Gallup StrengthsFinder test in mind, _TeamBuilder_  aims to delegate desirable team members in an
+efficient manner by leveraging on one another’s strengths.
 
 // tag::quickstart[]
 <<<
 [.text-justify]
 == Quick Start
-{bl}
-[blue]#Follow these steps to get _In-Credit-Ble_ up and running on your computer in no time!#
 
-[.text-left]
-.  Ensure you have [teal]#Java# version `[fuchsia]#9#` or later installed in your computer. You can download and install the required
-   Java Development Kit
-   link:https://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase9-3934878.html[[blue]#here#]
-.  Download the latest `[fuchsia]#In-Credit-Ble.jar#` file link:{repoURL}/releases[[blue]#here#].
-.  Copy the file to the folder you want to use as the home folder for your finance tracker.
-.  Double-click the file to start the application. The GUI should appear in a few seconds as shown below.
-   The _In-Credit-Ble_ finance tracker is loaded with example expense records and budget is still not set.
+All it takes is 3 simple steps to get _TeamBuilder_ up and running:
 
-[TIP]
-Use the *`[fuchsia]#clear#`* command to remove all the example expenses to start a new Finance Tracker with no entries.
+1. Ensure your browser is of the latest version. You may want to see if your browser version is supported here [https://angular.io/guide/browser-support].
+2. Click here [link to deployed url] to open up TeamBuilder. Upon launching the application, you should see a screen like this:
 
-{bl}
+  (place holder for final start up UI)
+  //.Graphical User Interface (Upon using `summary` command)
+  //image::GUI_Diagram2.png[width="600"]
 
-.UI upon launching the application
-image::startUI.png[]
-
-{bl}
-
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-[navy]#e.g.# typing *`[fuchsia]#help#`* and pressing kbd:[Enter] will open the help window and show the list of commands.
-.  [teal]#Some example commands you can try#:
-
-* *`[fuchsia]#help#`* : opens the _In-Credit-Ble_ user guide.
-* *`[fuchsia]#set#`* : sets the total budget for Finance Tracker.
-* *`[fuchsia]#allocate#`* : allocates budget to a certain category (within the total budget).
-* *`[fuchsia]#spend#`* : adds an expense record to the Finance Tracker.
-.  Refer to [underline blue]#<<Features>># for details of each command.
-// end::quickstart[]
-
-{bl}
+3. Fill up the form accordingly to start building your team!
 
 <<<
 // tag::userinterface1[]
