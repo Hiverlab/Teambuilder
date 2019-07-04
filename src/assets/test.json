@@ -1,0 +1,39 @@
+{
+	"persons": [
+		{
+			"name": "Test name",
+			"executing": 20,
+			"influencing": 30,
+			"relationship": 40,
+			"strategic": 50
+		},
+		{
+			"name": "Test name 2",
+			"executing": 50,
+			"influencing": 40,
+			"relationship": 30,
+			"strategic": 20
+		},
+		{
+			"name": "Test name 3",
+			"executing": 10,
+			"influencing": 60,
+			"relationship": 30,
+			"strategic": 0
+		},
+		{
+			"name": "Test name 4",
+			"executing": 40,
+			"influencing": 20,
+			"relationship": 80,
+			"strategic": 40
+		},
+		{
+			"name": "Test name 5",
+			"executing": 50,
+			"influencing": 40,
+			"relationship": 30,
+			"strategic": 20
+		}
+	]
+}
