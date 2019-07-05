@@ -4,7 +4,7 @@
 :toc-title:
 :toc-placement: preamble
 :sectnums:
-:imagesDir: src/assets/img
+:imagesDir: img
 :stylesDir: stylesheets
 :xrefstyle: full
 ifdef::env-github[]
@@ -13,7 +13,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :experimental:
 endif::[]
-:repoURL: https://github.com/geezlouisee/bridgewater/main/tree/master
+:repoURL: https://github.com/geezlouisee/bridgewater/tree/master
 :bl: pass:[ +]
 
 By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
@@ -70,23 +70,26 @@ be provided in Chapter 4.
 [[Design-Architecture]]
 === Architecture
 
-As Angular is largely based on the Model-View-Controller (MVC) framework, this makes it convenient for front-end testing
-for _TeamBuilder_ .
+Angular is largely based on the Model-View-Controller (MVC) framework.
+We decided to choose this framework as it makes it convenient for front-end testing for _TeamBuilder_.
 
-.Architecture Diagram of TeamBuilder
+.Architecture Diagram of _TeamBuilder_
 image::architecture.png[width="600"]
 
 The *_Architecture Diagram_* above explains the high-level design of _TeamBuilder_.
 Given below is a quick overview of each component.
 
 * *Model*: Corresponds to all data-related logic that the user works with.
-* *View*: Used for the UI logic of the application. Includes the html/css/ts files.
+* *View*: Used for the UI logic of the application. This includes the html/css files.
 * *Controller*: Acts as an interface between Model and View components, it manipulates data using the Model component
-and interact with the Views to render the final output.
+and interact with the Views to render the final output. This includes the service component in our application.
 
-Additionally, due to the Angular framework, the architecture of TeamBuilder is also largely component-based.
-Each component consists of some metadata, an HTML template and logic - all of which controls a patch of screen called a
-view.
+Additionally, due to the Angular framework, the architecture of _TeamBuilder_ is also largely component-based.
+Each component consists of some metadata, an HTML template and logic - all of which controls a patch of screen called a view.
+
+Below shows a brief diagram consisting of all the components in this application.
+
+<insert a diagram here>
 
 <<<
 [.text-justify]
@@ -102,42 +105,50 @@ TeamBuilder was made using a free template that is already supported by Angular 
 Their source code can be found https://demos.creative-tim.com/paper-kit-2-angular/#/home[here].
 
 === Angular/TS
+Angular primarily uses TypeScript (TS), which is a superset of JavaScript (JS) that supports type safety and tooling.
+TypeScript has to be “transpiled” into JavaScript using the tsc compiler, as browsers cannot execute TypeScript directly.
 
-=== Firebase
+Although TypeScript is not widely supported by most browsers, the polyfills.ts file that you see in the root `src` folder
+helps to fill in the gaps between the JS needed by the system features versus the JS version supported by most browsers,
+ECMAScript5 (ES5).
+
+_More details to be filled in soon..._
 
 === Combiner
+The Combiner will be implemented as a component in Angular and works like a point system,
+serving as the main logic/algorithm of _TeamBuilder_.
 
-<<<
+_<Insert user diagram here??>_
+
+This is the brief algorithm of how the Combiner works:
+
+_<Will fill this up once it is confirmed>_
+
+
 == Documentation
-{bl}
+
 We use asciidoc for writing documentation.
 
 [NOTE]
 We chose asciidoc over Markdown because asciidoc, although a bit more complex than Markdown, provides more flexibility in formatting.
 
-{bl}
+
 [.text-justify]
 === Editing Documentation
-{bl}
-See <<UsingGradle#rendering-asciidoc-files, [blue]#UsingGradle.adoc#>> to learn how to render `[fuchsia]#.adoc#` files locally to preview the end result of your edits.
-Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your `[fuchsia]#.adoc#` files in real-time.
 
-{bl}
+See <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to learn how to render `.adoc` files locally to preview the end result of your edits.
+Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your `.adoc` files in real-time.
 
 === Publishing Documentation
-{bl}
-See <<UsingTravis#deploying-github-pages, [blue]#UsingTravis.adoc#>> to learn how to deploy GitHub Pages using Travis.
-
-{bl}
+See <<UsingTravis#deploying-github-pages, UsingTravis.adoc>> to learn how to deploy GitHub Pages using Travis.
 
 === Converting Documentation to PDF format
-{bl}
-We use https://www.google.com/chrome/browser/desktop[[blue]#Google Chrome#] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
+We use https://www.google.com/chrome/browser/desktop[Google Chrome] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
 
 Here are the steps to convert the project documentation files to PDF format.
 
-.  Follow the instructions in <<UsingGradle#rendering-asciidoc-files, [blue]#UsingGradle.adoc#>> to convert the AsciiDoc files in the `[fuchsia]#docs/#` directory to HTML format.
-.  Go to your generated HTML files in the `[fuchsia]#build/docs#` folder, right click on them and select menu:Open With[Google Chrome].
+.  Follow the instructions in <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to convert the AsciiDoc files in the `docs/` directory to HTML format.
+.  Go to your generated HTML files in the `build/docs` folder, right click on them and select menu:Open With[Google Chrome].
 .  Within Chrome, click on the btn:[Print] option in Chrome's menu.
 .  Set the destination to btn:[Save as PDF], then click btn:[Save] to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.
 
@@ -145,16 +156,14 @@ Here are the steps to convert the project documentation files to PDF format.
 .Saving project documentation files to PDF format
 image::chrome_save_as_pdf.png[width="300"]
 
-{bl}
-
 <<<
 [[Docs-SiteWideDocSettings]]
 === Site-wide Documentation Settings
 {bl}
-The link:{repoURL}/build.gradle[`[blue]#build.gradle#`] file specifies some project-specific https://asciidoctor.org/docs/user-manual/#attributes[ [blue]_asciidoc attributes_] which affects how all documentation files within this project are rendered.
+The link:{repoURL}/build.gradle[`build.gradle`] file specifies some project-specific https://asciidoctor.org/docs/user-manual/#attributes[_asciidoc attributes_] which affects how all documentation files within this project are rendered.
 
 [TIP]
-Attributes left unset in the `[fuchsia]#build.gradle#` file will use their *default value*, if any.
+Attributes left unset in the `build.gradle` file will use their *default value*, if any.
 
 {bl}
 
@@ -163,17 +172,17 @@ Attributes left unset in the `[fuchsia]#build.gradle#` file will use their *defa
 |===
 |Attribute name |Description |Default value
 
-|`[fuchsia]#site-name#`
+|`site-name`
 |The name of the website.
 If set, the name will be displayed near the top of the page.
 |_not set_
 
-|`[fuchsia]#site-githuburl#`
+|`site-githuburl`
 |URL to the site's repository on https://github.com[[blue]#GitHub#].
 Setting this will add a "View on GitHub" link in the navigation bar.
 |_not set_
 
-|`[fuchsia]#site-seedu#`
+|`site-seedu`
 |Define this attribute if the project is an official SE-EDU project.
 This will render the SE-EDU navigation bar at the top of the page, and add some SE-EDU-specific navigation items.
 |_not set_
@@ -184,12 +193,12 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 [[Docs-PerFileDocSettings]]
 === Per-file Documentation Settings
 {bl}
-Each `[fuchsia]#.adoc#` file may also specify some file-specific https://asciidoctor.org/docs/user-manual/#attributes[[blue]_asciidoc attributes_] which affects how the file is rendered.
+Each `.adoc` file may also specify some file-specific https://asciidoctor.org/docs/user-manual/#attributes[[blue]_asciidoc attributes_] which affects how the file is rendered.
 
-Asciidoctor's https://asciidoctor.org/docs/user-manual/#builtin-attributes[[blue]_built-in attributes_] may be specified and used as well.
+Asciidoctor's https://asciidoctor.org/docs/user-manual/#builtin-attributes[_built-in attributes_] may be specified and used as well.
 
 [TIP]
-Attributes left unset in `[fuchsia]#.adoc#` files will use their *default value*, if any.
+Attributes left unset in `.adoc` files will use their *default value*, if any.
 
 {bl}
 
@@ -198,15 +207,15 @@ Attributes left unset in `[fuchsia]#.adoc#` files will use their *default value*
 |===
 |Attribute name |Description |Default value
 
-|`[fuchsia]#site-section#`
+|`site-section`
 |Site section that the document belongs to.
 This will cause the associated item in the navigation bar to be highlighted.
-One of: `[fuchsia]#UserGuide#`, `[fuchsia]#DeveloperGuide#`, ``[fuchsia]#LearningOutcomes#``{asterisk}, `[fuchsia]#AboutUs#`, `[fuchsia]#ContactUs#`
+One of: `UserGuide`, `DeveloperGuide`, ``LearningOutcomes``{asterisk}, `AboutUs`, `ContactUs`
 
 _{asterisk} Official SE-EDU projects only_
 |_not set_
 
-|`[fuchsia]#no-site-header#`
+|`no-site-header`
 |Set this attribute to remove the site navigation bar.
 |_not set_
 
@@ -215,19 +224,17 @@ _{asterisk} Official SE-EDU projects only_
 <<<
 === Site Template
 {bl}
-The files in link:{repoURL}/docs/stylesheets[`[blue]#docs/stylesheets#`] are the https://developer.mozilla.org/en-US/docs/Web/CSS[[blue]#CSS stylesheets#] of the site.
+The files in link:{repoURL}/docs/stylesheets[`docs/stylesheets`] are the https://developer.mozilla.org/en-US/docs/Web/CSS[CSS stylesheets] of the site.
 You can modify them to change some properties of the site's design.
 
-The files in link:{repoURL}/docs/templates[`[blue]#docs/templates#`] controls the rendering of `[fuchsia]#.adoc#` files into HTML5.
-These template files are written in a mixture of https://www.ruby-lang.org[[blue]#Ruby#] and http://slim-lang.com[[blue]#Slim#].
+The files in link:{repoURL}/docs/templates[`docs/templates`] controls the rendering of `.adoc` files into HTML5.
+These template files are written in a mixture of https://www.ruby-lang.org[Ruby] and http://slim-lang.com[Slim].
 
 [WARNING]
 ====
-Modifying the template files in link:{repoURL}/docs/templates[`[blue]#docs/templates#`] requires some knowledge and experience with Ruby and Asciidoctor's API.
+Modifying the template files in link:{repoURL}/docs/templates[`docs/templates`] requires some knowledge and experience with Ruby and Asciidoctor's API.
 You should only modify them if you need greater control over the site's layout than what stylesheets can provide.
 ====
-
-{bl}
 
 <<<
 [.text-justify]
