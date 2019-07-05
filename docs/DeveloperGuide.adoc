@@ -248,17 +248,6 @@ e2e (End-to-end) testing is used, which essentially is simulated user testing.
 <<<
 [.text-justify]
 == Glossary
-{bl}
 
-Amount::
-The amount of money for expenditure and budget
-
-Entry::
-A listed item/activity tracked by the application.  It generally consists of the name, amount and date along with a
-category tag (if specified)
-
-[[mainstream-os]] Mainstream OS::
-Windows, Linux, Unix, OS-X
-
-Records::
-The list of all entries stored in the application
+//Records::
+//The list of all entries stored in the application
