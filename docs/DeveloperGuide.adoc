@@ -38,38 +38,27 @@ the developers, designers and software testers of our application.
 [.text-justify]
 == Setting Up
 
-Before starting, ensure that you have the following installed:
+Before starting, ensure that you check you have the following installed:
 
-. Node.js
-. Npm (Node Package Manager)
-. Then, download the project (from Github & link to the Firebase console in your computer)
+* Node.js
+* Npm (Node package manager)
+* Angular
 
-Else, please follow the steps below:
+If you have installed all of the following, you may skip the following steps listed below.
 
-=== Verifying the setup
+1. Install Node.js and npm by typing npm install  in your terminal/console window. This step is important as it will be
+needed in the installation of Angular. If you are interested, the link to Angular’s documentation is included here.
+2. To install Angular, enter `npm install -g @angular/cli`
+3. Run the application by going into the root folder `cd my-app`
+4. Enter `ng serve --open`
+5. Lastly, download the project from Github https://github.com/geezlouisee/bridgewater[here].
 
-. ng serve(?) and see if everything is okay
+[NOTE]
+If you encounter an error pointing towards `node_modules/bootstrap/scss/_forms.scss` (line 247), remove the last argument
+so you should get something like this:
 
-==== Updating documentation to match your fork
-
-After forking the repo, the documentation will still refer to the `geezlouisee\bridgewater` repo.
-
-If you plan to develop this fork as a separate product (i.e. instead of contributing to `TeamBuilder`), you should do the following:
-
-. Replace the URL in the attribute `[fuchsia]#repoURL#` in link:{repoURL}/docs/DeveloperGuide.adoc[`[blue]#DeveloperGuide.adoc#`]
-and link:{repoURL}/docs/UserGuide.adoc[`[blue]#UserGuide.adoc#`] with the URL of your fork.
-
-=== Angular
-
-=== Firebase
-
-. Install the Firebase CLI
-. Initialise your project
-. Deploy to your site
-
-For more information about setting up Firebase and connecting it to the project on the Firebase console, you may want to
-refer to Firebase’s documentation https://firebase.google.com/docs/hosting/quickstart[here].
-
+.Edit the code accordingly to only contain 2 arguments
+image::forms.png[width="600"]
 
 <<<
 [.text-justify]
@@ -244,8 +233,6 @@ You should only modify them if you need greater control over the site's layout t
 [.text-justify]
 [[Testing]]
 == Testing
-
-{bl}
 
 === Running Tests
 {bl}
