@@ -1,7 +1,6 @@
 export class FormModel {
 	constructor(
 		public category: string[],
-    public strength: string[],
     public production: boolean,
     public technical: boolean,
     public creative: boolean,

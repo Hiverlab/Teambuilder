@@ -30,7 +30,7 @@ export class FormComponent implements OnInit {
   ]
   personData: any;
   private newData: any;
-  formModel = new FormModel([], [], false, false, false, false, false, false);
+  formModel = new FormModel([], false, false, false, false, false, false);
   personArray: Person[] = [];
 
   constructor(private dataService: DataService) { }
