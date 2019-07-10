@@ -1,10 +1,10 @@
-= Team Builder - Developer Guide
+= TeamBuilder - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
 :toc-placement: preamble
 :sectnums:
-:imagesDir: src/assets/img
+:imagesDir: img
 :stylesDir: stylesheets
 :xrefstyle: full
 ifdef::env-github[]
@@ -13,88 +13,52 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :experimental:
 endif::[]
-:repoURL: https://github.com/geezlouisee/bridgewater/main/tree/master
+:repoURL: https://github.com/geezlouisee/bridgewater/tree/master
 :bl: pass:[ +]
 
 By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
 
 [.text-justify]
 == Introduction
-Team Builder was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
-companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency and algorithmic
-decision when it comes to managing a company.
+This Bridgewater tool _TeamBuilder_ was inspired by office tools adopted by Bridgewater Associates, one of the largest
+investment management companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency
+and algorithmic decision when it comes to managing a company.
 
 One such tool that inspired us was the “Baseball cards”, a profiling tool that highlights a person’s strengths and their
 characteristics. Along with a “combiner” feature, the tool will be able to compare and analyse the key characteristics
 of each employee. It will help you to find the right person for the job based on their strengths.
 
-Thus, with that, Team Builder was created with the aim of improving the allocation of human resources to projects at
-Hiverlab Pte Ltd. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in
+Thus, with that, _TeamBuilder_ was created with the aim of improving the allocation of human resources to projects at
+Hiverlab Pte Ltd. With the Gallup StrengthsFinder test in mind, _TeamBuilder_ aims to delegate desirable team members in
 an efficient manner by leveraging on one another’s strengths.
 
-This developer guide specifies the design and implementation of Team Builder. The intended audience of this document is
+This developer guide specifies the design and implementation of _TeamBuilder_. The intended audience of this document is
 the developers, designers and software testers of our application.
 
 [.text-justify]
 == Setting Up
 
-Before starting, ensure that you have the following installed:
+Before starting, ensure that you check you have the following installed:
 
-. Node.js
-. Npm (Node Package Manager)
-. Then, download the project (from Github & link to the Firebase console in your computer)
+* Node.js
+* Npm (Node package manager)
+* Angular
 
-Else, please follow the steps below:
+If you have installed all of the following, you may skip the following steps listed below.
 
-=== Setting up the project in your computer
-{bl}
+1. Install Node.js and npm by typing npm install  in your terminal/console window. This step is important as it will be
+needed in the installation of Angular. If you are interested, the link to Angular’s documentation is included here.
+2. To install Angular, enter `npm install -g @angular/cli`
+3. Run the application by going into the root folder `cd my-app`
+4. Enter `ng serve --open`
+5. Lastly, download the project from Github https://github.com/geezlouisee/bridgewater[here].
 
-. Fork this repo, and clone the fork to your computer.
-. Open IntelliJ (if you are not in the welcome screen, click menu:File[Close Project] to close the existing project dialog first).
-. Set up the correct JDK version for Gradle.
-.. Click menu:Configure[Project Defaults > Project Structure]
-.. Click btn:[New...] and find the directory of the JDK.
-. Click btn:[Import Project]
-. Locate the `[fuchsia]#build.gradle#` file and select it. Click btn:[OK]
-. Click btn:[Open as Project]
-. Click btn:[OK] to accept the default settings.
-. Open a console and run the command `[fuchsia]#gradlew processResources#` (Mac/Linux: `[fuchsia]#./gradlew processResources#`). It should finish with the `[fuchsia]#BUILD SUCCESSFUL#` message. +
-This will generate all resources required by the application and tests.
-. Open link:{repoURL}/src/main/java/seedu/finance/ui/MainWindow.java[`[blue]#MainWindow.java#`] and check for any code errors.
-.. Due to an ongoing https://youtrack.jetbrains.com/issue/IDEA-189060[[blue]#issue#] with some of the newer versions of IntelliJ, code errors may be detected even if the project can be built and run successfully.
-.. To resolve this, place your cursor over any of the code section highlighted in [red]#red#. Press kbd:[ALT + ENTER], and select btn:[Add '--add-modules=...' to module compiler options] for each error.
-. Repeat this for the test folder as well ([navy]#e.g.# check link:{repoURL}/src/test/java/seedu/finance/ui/HelpWindowTest.java[`[blue]#HelpWindowTest.java#`] for code errors, and if so, resolve it the same way).
+[NOTE]
+If you encounter an error pointing towards `node_modules/bootstrap/scss/_forms.scss` (line 247), remove the last argument
+so you should get something like this:
 
-{bl}
-
-=== Verifying the setup
-
-. Run `[fuchsia]#seedu.finance.MainApp#` and try a few commands.
-. <<Testing,[underline blue]#Run the tests#>> to ensure they all pass.
-
-==== Updating documentation to match your fork
-{bl}
-After forking the repo, the documentation will still refer to the `[fuchsia]#CS2103-AY1819S2-W17-3/main#` repo.
-
-If you plan to develop this fork as a separate product (i.e. instead of contributing to `[fuchsia]#In-Credit-Ble#`), you should do the following:
-
-. Configure the <<Docs-SiteWideDocSettings, [underline blue]#site-wide documentation settings#>> in link:{repoURL}/build.gradle[`[blue]#build.gradle#`], such as the `[fuchsia]#site-name#`, to suit your own project.
-
-. Replace the URL in the attribute `[fuchsia]#repoURL#` in link:{repoURL}/docs/DeveloperGuide.adoc[`[blue]#DeveloperGuide.adoc#`] and link:{repoURL}/docs/UserGuide.adoc[`[blue]#UserGuide.adoc#`] with the URL of your fork.
-
-{bl}
-
-=== Angular
-
-=== Firebase
-
-. Install the Firebase CLI
-. Initialise your project
-. Deploy to your site
-
-For more information about setting up Firebase and connecting it to the project on the Firebase console, you may want to
-refer to Firebase’s documentation https://firebase.google.com/docs/hosting/quickstart[here].
-
+.Edit the code accordingly to only contain 2 arguments
+image::forms.png[width="600"]
 
 <<<
 [.text-justify]
@@ -106,23 +70,26 @@ be provided in Chapter 4.
 [[Design-Architecture]]
 === Architecture
 
-As Angular is largely based on the Model-View-Controller (MVC) framework, this makes it convenient for front-end testing
-for _TeamBuilder_ .
+Angular is largely based on the Model-View-Controller (MVC) framework.
+We decided to choose this framework as it makes it convenient for front-end testing for _TeamBuilder_.
 
-.Architecture Diagram of TeamBuilder
+.Architecture Diagram of _TeamBuilder_
 image::architecture.png[width="600"]
 
 The *_Architecture Diagram_* above explains the high-level design of _TeamBuilder_.
 Given below is a quick overview of each component.
 
 * *Model*: Corresponds to all data-related logic that the user works with.
-* *View*: Used for the UI logic of the application. Includes the html/css/ts files.
+* *View*: Used for the UI logic of the application. This includes the html/css files.
 * *Controller*: Acts as an interface between Model and View components, it manipulates data using the Model component
-and interact with the Views to render the final output.
+and interact with the Views to render the final output. This includes the service component in our application.
 
-Additionally, due to the Angular framework, the architecture of TeamBuilder is also largely component-based.
-Each component consists of some metadata, an HTML template and logic - all of which controls a patch of screen called a
-view.
+Additionally, due to the Angular framework, the architecture of _TeamBuilder_ is also largely component-based.
+Each component consists of some metadata, an HTML template and logic - all of which controls a patch of screen called a view.
+
+Below shows a brief diagram consisting of all the components in this application.
+
+<insert a diagram here>
 
 <<<
 [.text-justify]
@@ -138,42 +105,50 @@ TeamBuilder was made using a free template that is already supported by Angular 
 Their source code can be found https://demos.creative-tim.com/paper-kit-2-angular/#/home[here].
 
 === Angular/TS
+Angular primarily uses TypeScript (TS), which is a superset of JavaScript (JS) that supports type safety and tooling.
+TypeScript has to be “transpiled” into JavaScript using the tsc compiler, as browsers cannot execute TypeScript directly.
 
-=== Firebase
+Although TypeScript is not widely supported by most browsers, the polyfills.ts file that you see in the root `src` folder
+helps to fill in the gaps between the JS needed by the system features versus the JS version supported by most browsers,
+ECMAScript5 (ES5).
+
+_More details to be filled in soon..._
 
 === Combiner
+The Combiner will be implemented as a component in Angular and works like a point system,
+serving as the main logic/algorithm of _TeamBuilder_.
 
-<<<
+_<Insert user diagram here??>_
+
+This is the brief algorithm of how the Combiner works:
+
+_<Will fill this up once it is confirmed>_
+
+
 == Documentation
-{bl}
+
 We use asciidoc for writing documentation.
 
 [NOTE]
 We chose asciidoc over Markdown because asciidoc, although a bit more complex than Markdown, provides more flexibility in formatting.
 
-{bl}
+
 [.text-justify]
 === Editing Documentation
-{bl}
-See <<UsingGradle#rendering-asciidoc-files, [blue]#UsingGradle.adoc#>> to learn how to render `[fuchsia]#.adoc#` files locally to preview the end result of your edits.
-Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your `[fuchsia]#.adoc#` files in real-time.
 
-{bl}
+See <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to learn how to render `.adoc` files locally to preview the end result of your edits.
+Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your `.adoc` files in real-time.
 
 === Publishing Documentation
-{bl}
-See <<UsingTravis#deploying-github-pages, [blue]#UsingTravis.adoc#>> to learn how to deploy GitHub Pages using Travis.
-
-{bl}
+See <<UsingTravis#deploying-github-pages, UsingTravis.adoc>> to learn how to deploy GitHub Pages using Travis.
 
 === Converting Documentation to PDF format
-{bl}
-We use https://www.google.com/chrome/browser/desktop[[blue]#Google Chrome#] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
+We use https://www.google.com/chrome/browser/desktop[Google Chrome] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
 
 Here are the steps to convert the project documentation files to PDF format.
 
-.  Follow the instructions in <<UsingGradle#rendering-asciidoc-files, [blue]#UsingGradle.adoc#>> to convert the AsciiDoc files in the `[fuchsia]#docs/#` directory to HTML format.
-.  Go to your generated HTML files in the `[fuchsia]#build/docs#` folder, right click on them and select menu:Open With[Google Chrome].
+.  Follow the instructions in <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to convert the AsciiDoc files in the `docs/` directory to HTML format.
+.  Go to your generated HTML files in the `build/docs` folder, right click on them and select menu:Open With[Google Chrome].
 .  Within Chrome, click on the btn:[Print] option in Chrome's menu.
 .  Set the destination to btn:[Save as PDF], then click btn:[Save] to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.
 
@@ -181,16 +156,14 @@ Here are the steps to convert the project documentation files to PDF format.
 .Saving project documentation files to PDF format
 image::chrome_save_as_pdf.png[width="300"]
 
-{bl}
-
 <<<
 [[Docs-SiteWideDocSettings]]
 === Site-wide Documentation Settings
 {bl}
-The link:{repoURL}/build.gradle[`[blue]#build.gradle#`] file specifies some project-specific https://asciidoctor.org/docs/user-manual/#attributes[ [blue]_asciidoc attributes_] which affects how all documentation files within this project are rendered.
+The link:{repoURL}/build.gradle[`build.gradle`] file specifies some project-specific https://asciidoctor.org/docs/user-manual/#attributes[_asciidoc attributes_] which affects how all documentation files within this project are rendered.
 
 [TIP]
-Attributes left unset in the `[fuchsia]#build.gradle#` file will use their *default value*, if any.
+Attributes left unset in the `build.gradle` file will use their *default value*, if any.
 
 {bl}
 
@@ -199,17 +172,17 @@ Attributes left unset in the `[fuchsia]#build.gradle#` file will use their *defa
 |===
 |Attribute name |Description |Default value
 
-|`[fuchsia]#site-name#`
+|`site-name`
 |The name of the website.
 If set, the name will be displayed near the top of the page.
 |_not set_
 
-|`[fuchsia]#site-githuburl#`
+|`site-githuburl`
 |URL to the site's repository on https://github.com[[blue]#GitHub#].
 Setting this will add a "View on GitHub" link in the navigation bar.
 |_not set_
 
-|`[fuchsia]#site-seedu#`
+|`site-seedu`
 |Define this attribute if the project is an official SE-EDU project.
 This will render the SE-EDU navigation bar at the top of the page, and add some SE-EDU-specific navigation items.
 |_not set_
@@ -220,12 +193,12 @@ This will render the SE-EDU navigation bar at the top of the page, and add some 
 [[Docs-PerFileDocSettings]]
 === Per-file Documentation Settings
 {bl}
-Each `[fuchsia]#.adoc#` file may also specify some file-specific https://asciidoctor.org/docs/user-manual/#attributes[[blue]_asciidoc attributes_] which affects how the file is rendered.
+Each `.adoc` file may also specify some file-specific https://asciidoctor.org/docs/user-manual/#attributes[[blue]_asciidoc attributes_] which affects how the file is rendered.
 
-Asciidoctor's https://asciidoctor.org/docs/user-manual/#builtin-attributes[[blue]_built-in attributes_] may be specified and used as well.
+Asciidoctor's https://asciidoctor.org/docs/user-manual/#builtin-attributes[_built-in attributes_] may be specified and used as well.
 
 [TIP]
-Attributes left unset in `[fuchsia]#.adoc#` files will use their *default value*, if any.
+Attributes left unset in `.adoc` files will use their *default value*, if any.
 
 {bl}
 
@@ -234,15 +207,15 @@ Attributes left unset in `[fuchsia]#.adoc#` files will use their *default value*
 |===
 |Attribute name |Description |Default value
 
-|`[fuchsia]#site-section#`
+|`site-section`
 |Site section that the document belongs to.
 This will cause the associated item in the navigation bar to be highlighted.
-One of: `[fuchsia]#UserGuide#`, `[fuchsia]#DeveloperGuide#`, ``[fuchsia]#LearningOutcomes#``{asterisk}, `[fuchsia]#AboutUs#`, `[fuchsia]#ContactUs#`
+One of: `UserGuide`, `DeveloperGuide`, ``LearningOutcomes``{asterisk}, `AboutUs`, `ContactUs`
 
 _{asterisk} Official SE-EDU projects only_
 |_not set_
 
-|`[fuchsia]#no-site-header#`
+|`no-site-header`
 |Set this attribute to remove the site navigation bar.
 |_not set_
 
@@ -251,811 +224,30 @@ _{asterisk} Official SE-EDU projects only_
 <<<
 === Site Template
 {bl}
-The files in link:{repoURL}/docs/stylesheets[`[blue]#docs/stylesheets#`] are the https://developer.mozilla.org/en-US/docs/Web/CSS[[blue]#CSS stylesheets#] of the site.
+The files in link:{repoURL}/docs/stylesheets[`docs/stylesheets`] are the https://developer.mozilla.org/en-US/docs/Web/CSS[CSS stylesheets] of the site.
 You can modify them to change some properties of the site's design.
 
-The files in link:{repoURL}/docs/templates[`[blue]#docs/templates#`] controls the rendering of `[fuchsia]#.adoc#` files into HTML5.
-These template files are written in a mixture of https://www.ruby-lang.org[[blue]#Ruby#] and http://slim-lang.com[[blue]#Slim#].
+The files in link:{repoURL}/docs/templates[`docs/templates`] controls the rendering of `.adoc` files into HTML5.
+These template files are written in a mixture of https://www.ruby-lang.org[Ruby] and http://slim-lang.com[Slim].
 
 [WARNING]
 ====
-Modifying the template files in link:{repoURL}/docs/templates[`[blue]#docs/templates#`] requires some knowledge and experience with Ruby and Asciidoctor's API.
+Modifying the template files in link:{repoURL}/docs/templates[`docs/templates`] requires some knowledge and experience with Ruby and Asciidoctor's API.
 You should only modify them if you need greater control over the site's layout than what stylesheets can provide.
 ====
-
-{bl}
 
 <<<
 [.text-justify]
 [[Testing]]
 == Testing
+e2e (End-to-end) testing is used, which essentially is simulated user testing.
 
-{bl}
-
-=== Running Tests
-{bl}
-There are three ways to run tests.
-
-[TIP]
-The most reliable way to run tests is the 3rd one. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies.
-
-{bl}
-*Method 1: Using IntelliJ JUnit test runner*
-
-* To run all tests, right-click on the `[fuchsia]#src/test/java`# folder and choose `[fuchsia]#Run 'All Tests'#`.
-* To run a subset of tests, you can right-click on a test package, test class, or a test and choose `[fuchsia]#Run 'ABC'#`.
-
-{bl}
-*Method 2: Using Gradle*
-
-* Open a console and run the command `[fuchsia]#gradlew clean allTests#` (Mac/Linux: `[fuchsia]#./gradlew clean allTests#`).
-
-[NOTE]
-See <<UsingGradle#, [blue]#UsingGradle.adoc#>> for more info on how to run tests using Gradle.
-
-{bl}
-*Method 3: Using Gradle (headless)*
-
-Thanks to the https://github.com/TestFX/TestFX[[blue]#TestFX#] library we use, our GUI tests can be run in the _headless_ mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.
-
-To run tests in headless mode, open a console and run the command `[fuchsia]#gradlew clean headless allTests#` (Mac/Linux: `./[fuchsia]#gradlew clean headless allTests#`).
-
-<<<
-=== Types of tests
-{bl}
-We have two types of tests:
-
-.  *GUI Tests* - These are tests involving the GUI. They include,
-.. _System Tests_ that test the entire application by simulating user actions on the GUI. These are in the `[fuchsia]#systemtests#` package.
-.. _Unit tests_ that test the individual components. These are in `[fuchsia]#seedu.finance.ui#` package.
-.  *Non-GUI Tests* - These are tests not involving the GUI. They include,
-..  _Unit tests_ targeting the lowest level methods/classes. +
-[navy]#e.g.# `[fuchsia]#seedu.finance.commons.StringUtilTest#`
-..  _Integration tests_ that are checking the integration of multiple code units (those code units are assumed to be working). +
-[navy]#e.g.# `[fuchsia]#seedu.finance.storage.StorageManagerTest#`
-..  Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together. +
-[navy]#e.g.# `[fuchsia]#seedu.finance.logic.LogicManagerTest#`
-
-{bl}
-
-=== Troubleshooting Testing
-{bl}
-**Problem: `[fuchsia]#HelpWindowTest#` fails with a `[fuchsia]#NullPointerException#`.**
-
-* Reason: One of its dependencies, `[fuchsia]#HelpWindow.html#` in `[fuchsia]#src/main/resources/docs#` is missing.
-* Solution: Execute Gradle task `[fuchsia]#processResources#`.
-
-{bl}
-
-<<<
-[.text-justify]
-== Dev Ops
-
-{bl}
-
-=== Build Automation
-{bl}
-See <<UsingGradle#, [blue]#UsingGradle.adoc#>> to learn how to use Gradle for build automation.
-
-{bl}
-
-=== Continuous Integration
-{bl}
-We use https://travis-ci.org[[blue]#Travis CI#] and https://www.appveyor.com[[blue]#AppVeyor#] to perform _Continuous Integration_ on our projects. See <<UsingTravis#, [blue]#UsingTravis.adoc#>> and <<UsingAppVeyor#, [blue]#UsingAppVeyor.adoc#>> for more details.
-
-{bl}
-
-=== Coverage Reporting
-{bl}
-We use https://coveralls.io[[blue]#Coveralls#] to track the code coverage of our projects. See <<UsingCoveralls#, [blue]#UsingCoveralls.adoc#>> for more details.
-
-{bl}
-
-=== Documentation Previews
-{bl}
-When a pull request has changes to asciidoc files, you can use https://www.netlify.com[[blue]#Netlify#] to see a preview of how the HTML version of those asciidoc files will look like when the pull request is merged. See <<UsingNetlify#, [blue]#UsingNetlify.adoc#>> for more details.
-
-{bl}
-
-<<<
-=== Making a Release
-{bl}
-Here are the steps to create a new release.
-
-.  Update the version number in link:{repoURL}/src/main/java/seedu/address/MainApp.java[`[blue]#MainApp.java#`].
-.  Generate a JAR file <<UsingGradle#creating-the-jar-file, [blue]#using Gradle#>>.
-.  Tag the repo with the version number. [navy]#e.g.# `[fuchsia]#v0.1#`
-.  https://help.github.com/articles/creating-releases[[blue]#Create a new release using GitHub#] and upload the JAR file you created.
-
-{bl}
-
-=== Managing Dependencies
-{bl}
-A project often depends on third-party libraries. For example, _In-Credit-Ble_ depends on the https://github.com/FasterXML/jackson[[blue]#Jackson library#] for JSON parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:
-
-[loweralpha]
-. Include those libraries in the repo (this bloats the repo size)
-. Require developers to download those libraries manually (this creates extra work for developers)
-
-{bl}
-
-[[GetStartedProgramming]]
-<<<
-[.text-justify]
-// tag::appendixA[]
-[appendix]
-== Product Scope
-{bl}
-*Target user profile*:
-
-* has a need to manage a significant amount of expenses/finances
-* has a need to be more aware of his/her spending habits/patterns
-* can type fast
-* prefers typing over mouse input
-* is reasonably comfortable using CLI applications
-
-
-{bl}
-*Value proposition*: Manage expenses faster than a typical mouse/GUI driven application
-
-// end::appendixA[]
-
-{bl}
-
-// tag::appendixB[]
-[appendix]
-<<<
-[.text-justify]
-== User Stories
-{bl}
-Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
-
-{bl}
-
-[width="100%",cols="20%,<20%,<25%,<35%",options="header",]
-|=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to it when I forget how to use the application
-
-|`* * *` |user |have a record of my recent expenses (day, week, month, category) |be more aware of where I am spending my money
-
-|`* * *` |user |add a new entry |
-
-|`* * *` |user |delete an entry |remove an entry that is no longer needed anymore
-
-|`* * *` |user |categorise my expenses |be aware of what I am spending most of my money on
-
-|`* * *` |user |be able to set a budget (a total for the month and for which category) |be more thrifty in terms of my expenditure
-
-|`* *` |user |summarise my daily spending in a pictorial form |easily see how on track I am in adhering to my budget
-
-|`* *` |user |locate a specific entry easily |recall how much I spent
-
-|`* *` |user | save my data |refer to it when I use the application next time
-
-|`* *` |user | sort my expenses in terms of amount | be aware of what costs the most
-
-|`* *` |user |set daily budgets |limit the amount I spend each day
-
-|`*` |user |analyse my spending habits/patterns |derive a savings plan and better plan my expenses
-
-|`*` |spendthrift user |receive tips to be a better saver |be more aware of different ways to keep within my budget
-
-|`*` |IT savvy user |categorise my expenses based on the different methods of payment |automatically track my cashless expenditures as well as credit card transactions
-|=======================================================================
-// end::appendixB[]
-
-{bl}
-
-// tag::appendixC[]
-[appendix]
-<<<
-[.text-justify]
-== Use Cases
-{bl}
-(For all use cases below, the *System* is `[fuchsia]#In-Credit-Ble#` and the *User* is the `[fuchsia]#user#`, unless specified otherwise)
-
-{bl}
-
-[discrete]
-=== Use case: Setting a budget for the month
-
-*MSS*
-
-1.  _User_ requests to set a budget for the current month
-2.  _System_ displays current budget amount for the month
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. With addition of expense entries, _System_ updates the remaining amount in the current month's budget
-+
-Use case ends.
-
-{bl}
-
-[discrete]
-=== Use case: Allocate budget to a category
-
-*MSS*
-
-1.  _User_ requests to list summary of budget based on category
-2.  _System_ shows a summary of budget based on category
-3.  _User_ requests to allocate a certain amount to a category
-4.  _System_ allocates the user input amount to the given category
-+
-Use case ends.
-
-{bl}
-
-<<<
-[discrete]
-=== Use case: Increasing budget for the month
-
-*MSS*
-
-1.  _User_ requests to list entries
-2.  _System_ shows a list of expense entries
-3.  _User_ requests to increase budget for the month (can be associated with a category)
-4.  _System_ will increase the budget for the month (that is associated with category input)
-+
-Use case ends.
-
-{bl}
-
-[discrete]
-=== Use case: Add expense entry
-
-*MSS*
-
-1.  _User_ requests to list entries
-2.  _System_ shows a list of expense entries
-3.  _User_ requests to add a specific expense entry in the list
-4.  _System_ adds the expense entry
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 3a. Some fields are missing.
-+
-[none]
-** 3a1. _System_ shows an error message.
-+
-Use case resumes at step 2.
-
-{bl}
-
-<<<
-[discrete]
-=== Use case: Editing an expense entry
-
-*MSS*
-
-1.  _User_ requests to list expense entries
-2.  _System_ shows a list of expense entries
-3.  _User_ requests to edit a specific expense entry in the list
-4.  _System_ updates the expense entry as well as the budget summary accordingly
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. The list is empty.
-+
-Use case ends
-
-[none]
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. _System_ shows an error message.
-+
-Use case resumes at step 2.
-{bl}
-
-[discrete]
-=== Use case: Delete expense entry
-
-*MSS*
-
-1.  _User_ requests to list expense entries
-2.  _System_ shows a list of expense entries
-3.  _User_ requests to delete a specific expense entry in the list
-4.  _System_ deletes the entry
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. _System_ shows an error message.
-+
-Use case resumes at step 2.
-
-<<<
-[discrete]
-=== Use case: Listing history of entered commands
-
-*MSS*
-
-1.  _User_ requests to list history of entered commands
-2.  _System_ shows history of commands in reverse chronological order (latest command first)
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. There was no entered commands
-+
-Use case ends.
-
-{bl}
-
-[discrete]
-=== Use case: User wants to undo previous command
-
-*MSS*
-
-1.  _User_ requests to undo previous command
-2.  _System_ undo previous command and updates budget accordingly
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. There was no previous command
-+
-Use case ends with message to let _User_ know there is no previous command
-
-{bl}
-
-<<<
-[discrete]
-=== Use case: User wants to redo previous undone command
-
-*MSS*
-
-1.  _User_ requests to redo previous undone command
-2.  _System_ redo previous undone command and updates budget accordingly
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. There was no previous undone command
-+
-Use case ends with message to let _User_ know there is no previous undone command
-
-{bl}
-
-[discrete]
-=== Use case: User wants to clear all entries
-
-*MSS*
-
-1. _User_ requests to clear all entries
-2. _System_ clears all entries and updates the budget accordingly
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. There are no entries in the _System_
-+
-Use case ends with message to let _User_ know there are no entries in _System_
-
-// end::appendixC[]
-
-{bl}
-
-[appendix]
-<<<
-[.text-justify]
-== Non Functional Requirements
-{bl}
-
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `[fuchsia]#9#` or higher installed.
-.  Should work on both 32-bit and 64-bit environments.
-.  Should be able to hold up to 1000 expenditure records without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-.  The user interface should be intuitive and easy to use for people who are not IT-savvy.
-.  Responses by the system should be fast (~5 seconds).
-
-{bl}
+<May need to write about how to test with their own .json files??>
 
 [appendix]
 <<<
 [.text-justify]
 == Glossary
-{bl}
 
-Amount::
-The amount of money for expenditure and budget
-
-Entry::
-A listed item/activity tracked by the application.  It generally consists of the name, amount and date along with a
-category tag (if specified)
-
-[[mainstream-os]] Mainstream OS::
-Windows, Linux, Unix, OS-X
-
-Records::
-The list of all entries stored in the application
-
-{bl}
-
-<<<
-[appendix]
-[.text-justify]
-== Product Survey
-{bl}
-*[fuchsia]#Monefy - Money Manager#*
-
-Author: Aimbity AS
-
-Pros:
-
-* Interface is easy to use
-* Able to track expenses and income over various periods of time
-* Free
-
-Cons:
-
-* Unable to synchronise and restore or backup data between devices
-* Do not have an auto-income function
-* Do not have an option for reminder
-* Do not have a feature for recurrent spending
-
-*[fuchsia]#Money Lover: Expense Tracker & Budget Planner#*
-
-{bl}
-Author: Finsify
-
-Pros:
-
-* Allows setting of recurring payments
-* Able to see what expenses add up to in the forthcoming months
-* Able to sync across phone and computer
-* Able to download to own excel worksheet
-
-Cons:
-
-* Need to make a budget for every wallet
-* Unable to choose multiple categories for a budget
-* Unable to edit a transaction
-* Budgets are based per account
-
-{bl}
-*[fuchsia]#Seedly - Personal Finance App#*
-
-Author: Seedly Pte Ltd
-
-Pros:
-
-* Visually appealing
-* Able to import transactions from ibanking accounts and allow manual inputs for cash transactions
-* Pie charts give a visual illustration on expenditure
-* Search function present
-
-Cons:
-
-* Sync feature takes a long time
-* Crash every now and then
-* Categories are hard to identify in pie charts
-* Not smart enough to recognise similar entries
-* Summary presented is confusing
-* Unable to add in sub-categories to further pinpoint area of spending
-
-{bl}
-
-[appendix]
-<<<
-[.text-justify]
-== Instructions for Manual Testing
-{bl}
-Given below are instructions to test the application manually.
-
-[NOTE]
-These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
-
-{bl}
-
-=== Launch and Shutdown
-{bl}
-
-. Initial launch
-
-.. Download the [fuchsia]#JAR# file and copy into an empty folder.
-.. Double-click the [fuchsia]#JAR# file. +
-   Expected: Shows the [fuchsia]#GUI# with a set of sample records. The window size may not be optimum.
-
-. Saving window preferences
-
-.. Resize the window to an optimum size. Move the window to a different location. Close the window.
-.. Re-launch the application by double-clicking the [fuchsia]#JAR# file. +
-   Expected: The most recent window size and location is retained.
-
-{bl}
-
-=== Setting a budget
-{bl}
-
-. Setting a initial budget
-.. Test case: `[fuchsia]#set $/500#` +
-   Expected: The budget is set to $500. The Budget Panel and Browser Panel are updated accordingly.
-.. Test case: `[fuchsia]#set $/500.50#` +
-   Expected: The budget is changed to $500.50. The Budget Panel and Browser Panel are updated accordingly.
-.. Test case: `[fuchsia]#set 500#` +
-   Expected: The budget is not changed. Error details shown in the status message. Status bar remains the same.
-.. Test case: `[fuchsia]#set $/$500#` +
-   Expected: The budget is not changed. Error details shown in status message about amount.
-.. Test case: `[fuchsia]#set $/-1#` +
-   Expected: Similar to previous.
-.. Test case: `[fuchsia]#set $/0#` +
-   Expected: Similar to previous.
-
-{bl}
-
-=== Allocating category budgets and showing allocated category budgets
-{bl}
-
-. Allocating category budget (no spending in category; we assume that total budget set is $500)
-.. Test case: `[fuchsia]#allocate $/50 c/Shopping#`, then `[fuchsia]#show#` +
-   Expected: Category Budget is allocated in `[fuchsia]#Shopping#` category. Result Display shows current spending over budget.
-   for allocated category budgets
-.. Test case: `[fuchsia]#allo $/30 c/Transport#`, then `[fuchsia]#show#` +
-   Expected: Category Budget is allocated in `[fuchsia]#Transport#` category. Result Display shows current spending over budget.
-   for allocated category budgets
-.. Test case: `[fuchsia]#allocate $/30 c/Books c/Movies#`, then `[fuchsia]#show#` +
-   Expected: Category Budget allocated in `[fuchsia]#Movies#` category. Result Display current spending over budget.
-   for allocated category budgets
-.. Test case: `[fuchsia]#allocate $/$30 c/Holiday#` +
-   Expected: Category Budget not allocated. Error details shown in status message.
-.. Test case: `[fuchsia]#allocate $/30 c/Holiday In Melbourne#` +
-   Expected: Category Budget not allocated. Error details shown in status message.
-.. Test case: `[fuchsia]#allocate $/600 c/School#` +
-   Expected: Category Budget not allocated. Category Budget more than Total budget. Error details in status message.
-
-. Allocating category budget (previously had spending in the category) +
-Assume that `[fuchsia]#Food#` category has $16.50 spent so far
-.. Test case: `[fuchsia]#allocate $/17 c/Food#` +
-   Expected: Category Budget allocated in Food category. Result Display shows current spending over budget for allocated
-   category budgets.
-.. Test case: `[fuchsia]#allocate $/10 c/Food#` +
-   Expected: Category Budget not allocated. Current Spending in category more than user input for category budget.
-   Error details shown in status message.
-
-{bl}
-
-=== Adding an expense
-{bl}
-
-. Adding an entry no matter what is listed.
-
-.. Test case: `[fuchsia]#spend n/Chicken Rice $/5.50 c/Food d/1/4/2019 r/Tasty#` +
-   Expected: Entry is added to the back of the list. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#spend n/Tshirt $/10.00 d/31/03/2019 c/Food c/Clothes#` +
-   Expected: Entry is added to the back of the list. Category recorded down is Clothes. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#spend n/Chicken Rice $/5.50 c/Food#` +
-   Expected: Entry is added to the back of the list. Since date is not supplied, today’s date will be recorded.
-   Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#add n/Chicken Rice $/5.50 c/Food#` +
-   Expected: Entry is added to the back of the list. Since date is not supplied, today’s date will be recorded.
-   Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#spend n/Chicken Rice $/5.50#` +
-   Expected: No entry is added. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect spend commands to try: `[fuchsia]#spend n/Chicken Rice c/Food#`, `[fuchsia]#spend $.5.50 c/Food#`, `[fuchsia]#spend n/Chicken Rice $/5.5 c/Food#`,
-   `[fuchsia]#spend n/Chicken Rice $/5.50 c/Food d/12/12/2045#`, `[fuchsia]#spend n/Chicken Rice $/$5.50 c/Food#` +
-   Expected: Similar to previous
-
-{bl}
-
-<<<
-=== Editing an expense
-{bl}
-
-. Edit an entry while all entries are listed
-
-.. Prerequisites: List all entries using the `[fuchsia]#list#` command. The list must have some entries in it.
-.. Editing one parameter of an entry.
-... Test case: `[fuchsia]#edit 1 n/test#` +
-    Expected: The name of the first entry is being changed to test. Time stamp in the status bar is updated.
-... Test case: `[fuchsia]#edit 1 d/01/02/2003#` +
-    Expected: The date of the first entry is being changed to 01/02/2003. Time stamp in the status bar is updated.
-... Test case: `[fuchsia]#edit 1 $/100#` +
-    Expected: The amount spent of the first entry is changed to $100. The budget shown in the budget panel and the
-    browser panel is updated. Time stamp in the status bar is updated.
-... Test case: `[fuchsia]#edit 1 c/Test#` +
-    Expected: The category of the first entry is changed to Test. Time stamp in the status bar is updated.
-... Test case: `[fuchsia]#edit 1 r/Testing testing#` +
-    Expected: The description of the first entry is changed to "Testing testing". Time stamp in the status bar is updated.
-
-.. Editing more than one parameter of an entry
-... Test case: `[fuchsia]#edit 1 n/test1 $/123#` +
-    Expected: The first entry is being changed based on the command. The budget shown in the budget panel and the
-    browser panel is updated. Time stamp in the status bar is updated.
-... Test case: `[fuchsia]#edit 1 n/test2 $/1234 d/01/01/2001#` +
-    Expected: Similar to previous.
-... Test case: `[fuchsia]#edit 1 n/test3 $/12345 d/01/01/2002 c/Test1#` +
-    Expected: Similar to previous.
-... Test case: `[fuchsia]#edit 1 n/test4 $/123456 d/01/01/2003 c/Test2 r/Testing test#` +
-    Expected: Similar to previous.
-
-.. Removing description for an entry
-... Prerequisites: The first entry of the list must have a description.
-... Test case: `[fuchsia]#edit 1 r/#` +
-    Expected: The description for the first entry is removed.
-
-.. Invalid command due to index
-... Test case: `[fuchsia]#edit 0 n/test#` +
-    Expected: No entry is edited. Error details shown in the status message. Status bar remains the same.
-
-.. Invalid command due to parameters
-... Test case: `[fuchsia]#edit 1 $/test#` +
-    Expected: No entry is added. Error details shown in the status message. Status bar remains the same.
-... Other incorrect edit commands to try: `[fuchsia]#edit 1 d/01/01/2045#`, `[fuchsia]#edit 1 $/$100#`,
-    `[fuchsia]#edit 1 r/12345678901234567890123456789012345678901#`.
-
-{bl}
-
-=== Deleting an entry
-{bl}
-
-. Deleting an entry while all entries are listed.
-
-.. Prerequisites: List all entries using the `[fuchsia]#list#` command. Multiple entries in the list.
-.. Test case: `[fuchsia]#delete 1#` +
-   Expected: First entry is deleted from the list. Details of the deleted entry shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#delete 0#` +
-   Expected: No entry is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `[fuchsia]#delete#`, `[fuchsia]#delete x#` (where x is larger than the list size), `[fuchsia]#delete three#` +
-   Expected: Similar to previous.
-
-{bl}
-
-<<<
-=== Searching an entry
-{bl}
-
-[NOTE]
-In order for the expected results of the test to be accurate, please input the following commands below to set up your
-finance tracker. +
-1. `[fuchsia]#clear#` +
-2. `[fuchsia]#spend n/Chicken Rice $/5.50 c/Food d/1/4/2019#` +
-3. `[fuchsia]#spend n/Chicken Rice $/5.50 c/Food d/2/4/2019#` +
-4. `[fuchsia]#spend n/Cupcakes $/2.50 c/Food d/2/4/2019#` +
-5. `[fuchsia]#spend n/Tshirt $/15 c/Clothes d/1/4/2019#` +
-6. `[fuchsia]#spend n/Jeans $/40 c/Clothes d/2/4/2019#`
-
-. Searching for an entry or entries in a list.
-
-.. Prerequisites: There must already be entries that are shown in the record list panel. Please set up the finance
-   tracker as shown in the [fuchsia]#NOTE# above.
-.. Search by name
-... Test case: `[fuchsia]#search -name chicken rice#` +
-    Expected: 2 records are shown in the records list panel. The result display shows that the total spent on the
-    searched records is $11.00.
-... Test case: `[fuchsia]#search -name chicken#` +
-    Expected: Same as previous.
-.. Search by category
-... Test case: `[fuchsia]#search -cat clothes#` +
-    Expected: 2 records are shown in the records list panel. The result display shows that the total spent on the
-    searched records is $55.00.
-.. Search by date
-... Test case: `[fuchsia]#search -date 2/4/2019#` +
-    Expected: 3 records are shown in the records list panel. The result display shows that the total spent on the
-    searched records is $48.00.
-... Test case: `[fuchsia]#search -date 5/4/2019#` +
-    Expected: 0 records are shown in the records list panel. The result display shows that the total spent on the
-    searched records is $0.00.
-.. Search with no records shown
-... No matches in the keywords: `[fuchsia]#search -date 5/4/2019#` +
-    Expected: 0 records are shown in the records list panel. The result display shows that the total spent on the
-    searched records is $0.00.
-... No parameters inputted after the search flag: `[fuchsia]#search -date#` +
-    Expected: Same as previous.
-.. Invalid search command
-... Test case: `[fuchsia]#search -cat -date#`
-    Expected: Error message is shown. The records list panel remains the same.
-... Other incorrect search commands to try: `[fuchsia]#search -food#`, `[fuchsia]#search -cat -food#`, `[fuchsia]#search -cat -date -name#`.
-
-{bl}
-
-=== Sorting the entries
-{bl}
-
-. Sort entries by name
-
-.. Prerequisites: List must have some entries in it.
-.. Test case: `[fuchsia]#sort -name#` +
-   Expected: List is sorted by name in lexicographical order. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#sort -name -desc#` +
-   Expected: List is sorted by name in reverse lexicographical order. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#sort -name -asc#` +
-   Expected: List is sorted by name in lexicographical order. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#sort -asc -name#` +
-   Expected: List will not be sorted. Error message is shown. Status bar remains the same.
-.. Other incorrect sort commands to try: `[fuchsia]#sort -desc -name#`, `[fuchsia]#sort -name -inc#`, `[fuchsia]#sort -name -asc a-z#` +
-   Expected: Similar to previous.
-
-. Sort entries by amount
-
-.. Prerequisites: List must have some entries in it.
-.. Test case: `[fuchsia]#sort -amount#` +
-   Expected: List is sorted by amount in descending order. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#sort -amount -asc#` +
-   Expected: List is sorted by amount in ascending order. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#sort -amount -desc#` +
-   Expected: List is sorted by amount in descending order. Timestamp in the status bar is updated.
-.. Test case: `[fuchsia]#sort -asc -amount#` +
-   Expected: List will not be sorted. Error message is shown. Status bar remains the same.
-.. Other incorrect sort commands to try: `[fuchsia]#sort -desc -amount#`, `[fuchsia]#sort -amount -inc#`, `[fuchsia]#sort -name -amount#` +
-   Expected: Similar to previous.
-
-{bl}
-
-=== Obtaining a summary of entries
-{bl}
-
-. Entering `[fuchsia]#summary#` command when _In-Credit-Ble_ is empty.
-
-.. Prerequisites: No existing entries in _In-Credit-Ble_.
-.. Test case: `[fuchsia]#summary#` +
-   Expected: Error message is shown.
-.. Test case: `[fuchsia]#summary #/6 p/d#` +
-   Expected: Error message is shown.
-.. Test case: `[fuchsia]#summary #/10 p/m#` +
-   Expected: Error message is shown.
-
-. Entering `[fuchsia]#summary#` command when there are entries listed in the records list panel.
-.. Prerequisites: There is at least one entry that exists in the specified report period.
-.. Test case: `[fuchsia]#summary#` +
-   Expected: Entries that have been entered in _In-Credit-Ble_ in the past 7 days will be displayed in the pie chart.
-             A success message will also be displayed in the result box.
-.. Test case: `[fuchsia]#summary #/9 p/d#` +
-   Expected: Entries that have been entered in _In-Credit-Ble_ in the past 9 days will be displayed in the pie chart.
-             A success message will also be displayed in the result box.
-.. Test case: `[fuchsia]#summary #/5 p/m#` +
-   Expected: Entries that have been entered in _In-Credit-Ble_ in the past 5 months will be displayed in the pie chart.
-             A success message will also be displayed in the result box.
-
-On the other hand, if there are no existing entries in the specified report period (but _In-Credit-Ble_ has other existing entries):
-
-.. Test case: `[fuchsia]#summary #/9 p/m#` +
-   Expected: Error message is shown.
-
-{bl}
-
-=== Changing the Finance Tracker data storage location
-
-[NOTE]
-In order to test this command, please take note the name of the [fuchsia]#json# file you are currently on. The name of the file can
-be seen at the right side of the status bar. By default, the json file is "[fuchsia]#finance.json#".
-
-. Changing the file when the filename does not belong to a file that exists or the file is wrongly formatted.
-.. Prerequisites: The filename does not belong to an existing [fuchsia]#json# file with stored Finance Tracker data. The user is currently using [fuchsia]#finance.json# file.
-.. Test case: `[fuchsia]#setfile f/testfile#` +
-   Expected: A new finance tracker file will be created with no records in the records list and the budget will be shown
-   as $0.00.
-. Changing the file when the filename belongs to a file with existing data added by the _In-Credit-Ble_.
-.. Prerequisites: The filename belongs to a file that already exists with data added by _In-Credit-Ble_ or data that is correctly formatted.
-.. Test case: `[fuchsia]#setfile f/testfile#` +
-   Expected: The data previously added to [fuchsia]#testfile.json# will be loaded into _In-Credit-Ble_.
-.. Test case: `[fuchsia]#setfile f/finance#` +
-   Expected: No apparent change as the same file the user is currently on will be loaded again.
+//Records::
+//The list of all entries stored in the application
