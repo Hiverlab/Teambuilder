@@ -21,16 +21,16 @@ export class FormComponent implements OnInit {
     {"value": ["relationship", "influencing"], "name": "Training solution (liasing with HR dept)"}
   ]
   skills = [
-    {"value": ["production"], "name": "360 Production"},
-    {"value": ["techdev"], "name": "Technical Development"},
-    {"value": ["creative"], "name": "Creative"},
-    {"value": ["marketing"], "name": "Marketing"},
-    {"value": ["admin"], "name": "Admin"},
-    {"value": ["others"], "name": "Others"}
+    {"name": "360 Production", "field": "production"},
+    {"name": "Technical Development", "field": "technical"},
+    {"name": "Creative", "field": "creative"},
+    {"name": "Marketing", "field": "marketing"},
+    {"name": "Admin", "field": "admin"},
+    {"name": "Others", "field": "others"}
   ]
   personData: any;
   private newData: any;
-  formModel = new FormModel([], []);
+  formModel = new FormModel([], [], false, false, false, false, false, false);
   personArray: Person[] = [];
 
   constructor(private dataService: DataService) { }
@@ -51,9 +51,6 @@ export class FormComponent implements OnInit {
       scorePersonList.push(this.createScorePersons(category));
     }
 
-    for (let skill of this.formModel.skill) {
-      scorePersonList.push(this.createScorePersons(skill));
-    }
     console.log(scorePersonList);
   }
 

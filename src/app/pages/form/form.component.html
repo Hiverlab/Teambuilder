@@ -91,7 +91,7 @@
           <div class="card-body">
             <div class="custom-control custom-control-alternative custom-checkbox mb-3"
               *ngFor="let skill of skills">
-                <input name="skill" class="custom-control-input" id="{{skill.name}}" type="radio" [(ngModel)]="formModel.skill">
+                <input name="{{skill.name}}" class="custom-control-input" id="{{skill.name}}" type="checkbox" [(ngModel)]="formModel[skill.field]">
                 <label class="custom-control-label" for="{{skill.name}}">{{skill.name}}</label>
             </div>
           </div>

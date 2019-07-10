@@ -15,4 +15,11 @@ export class Person {
   //constructor
   constructor() { }
 
+  //Add display function??
+
+   // //function
+   //   disp():void {
+   //     console.log("Person displayed is  :   "+this.person)
+   //  }
+
 }
