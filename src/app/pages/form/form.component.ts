@@ -47,7 +47,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    this.slider = document.getElementById("test");
+    this.slider = document.getElementById("strengths_skills_slider");
     noUiSlider.create(this.slider, {
       start: 50,
       connect: [true, false],
