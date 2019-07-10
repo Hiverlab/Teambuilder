@@ -30,53 +30,6 @@
       </div>
     </div> <br>
 
-    <!-- Project - Strengths needed -->
-    <div class="row">
-      <div class="col">
-        <div class="card bg-secondary shadow">
-          <div class="card-header bg-white border-0">
-            <div class="row align-items-center">
-              <div class="col-8">
-                <h3 class="mb-0">Fill in the desired weightage of each category of the Gallup Strengths Builder Test.</h3>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-executing">Executing</label>
-                    <input type="text" id="input-executing" class="form-control form-control-alternative" placeholder="%">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-influencing">Influencing</label>
-                    <input type="text" id="input-influencing" class="form-control form-control-alternative" placeholder="%">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-relationship">Relationship</label>
-                    <input type="text" id="input-relationship" class="form-control form-control-alternative" placeholder="%">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-strategic">Strategic</label>
-                    <input type="text" id="input-strategic" class="form-control form-control-alternative" placeholder="%">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> <br>
-
     <!-- Project skill sets-->
     <div class="row">
       <div class="col">
@@ -89,29 +42,10 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-              <input class="custom-control-input" id="customCheck1" type="checkbox">
-              <label class="custom-control-label" for="customCheck1">360 Production</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-              <input class="custom-control-input" id="customCheck2" type="checkbox">
-              <label class="custom-control-label" for="customCheck2">Technical Development</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-              <input class="custom-control-input" id="customCheck3" type="checkbox">
-              <label class="custom-control-label" for="customCheck3">Creative</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-              <input class="custom-control-input" id="customCheck4" type="checkbox">
-              <label class="custom-control-label" for="customCheck4">Marketing</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-              <input class="custom-control-input" id="customCheck5" type="checkbox">
-              <label class="custom-control-label" for="customCheck5">Admin</label>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-              <input class="custom-control-input" id="customCheck6" type="checkbox">
-              <label class="custom-control-label" for="customCheck6">Others</label>
+            <div class="custom-control custom-control-alternative custom-checkbox mb-3"
+              *ngFor="let skill of skills">
+                <input name="{{skill.name}}" class="custom-control-input" id="{{skill.name}}" type="checkbox" [(ngModel)]="formModel[skill.field]">
+                <label class="custom-control-label" for="{{skill.name}}">{{skill.name}}</label>
             </div>
           </div>
         </div>

@@ -5,35 +5,65 @@
 			"executing": 20,
 			"influencing": 30,
 			"relationship": 40,
-			"strategic": 50
+			"strategic": 50,
+      "production": 80,
+      "techdev": 20,
+      "creative": 30,
+      "marketing": 0,
+      "admin": 0,
+      "others": 0
 		},
 		{
 			"name": "Test name 2",
 			"executing": 50,
 			"influencing": 40,
 			"relationship": 30,
-			"strategic": 20
-		},
+			"strategic": 20,
+      "production": 30,
+      "techdev": 70,
+      "creative": 90,
+      "marketing": 10,
+      "admin": 20,
+      "others": 20
+    },
 		{
 			"name": "Test name 3",
 			"executing": 10,
 			"influencing": 60,
 			"relationship": 30,
-			"strategic": 0
-		},
+			"strategic": 0,
+      "production": 20,
+      "techdev": 20,
+      "creative": 25,
+      "marketing": 60,
+      "admin": 30,
+      "others": 0
+    },
 		{
 			"name": "Test name 4",
 			"executing": 40,
 			"influencing": 20,
 			"relationship": 80,
-			"strategic": 40
-		},
+			"strategic": 40,
+      "production": 10,
+      "techdev": 10,
+      "creative": 600,
+      "marketing": 80,
+      "admin": 20,
+      "others": 10
+    },
 		{
 			"name": "Test name 5",
 			"executing": 50,
 			"influencing": 40,
 			"relationship": 30,
-			"strategic": 20
-		}
+			"strategic": 20,
+      "production": 50,
+      "techdev": 50,
+      "creative": 40,
+      "marketing": 10,
+      "admin": 20,
+      "others": 20
+    }
 	]
 }
