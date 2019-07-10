@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { Person } from './person';
 import { FormModel } from './form-model';
 import { ScorePerson } from './score-person';
+import noUiSlider from "noUiSlider";
 declare const google: any;
 
 @Component({
@@ -11,7 +12,7 @@ declare const google: any;
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, AfterViewInit {
 
   categories = [
     {"value": ["relationship"], "name": "Event/Workshop"},
@@ -24,7 +25,7 @@ export class FormComponent implements OnInit {
   private newData: any;
   formModel = new FormModel([]);
   personArray: Person[] = [];
-
+  slider: any;
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
@@ -37,12 +38,26 @@ export class FormComponent implements OnInit {
         });
   }
 
+  ngAfterViewInit(){
+    this.slider = document.getElementById("test");
+    noUiSlider.create(this.slider, {
+      start: 50,
+      connect: [true, false],
+      step: 0.25,
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+  }
+
   submit() {
     let scorePersonList: ScorePerson[][] = [];
     for (let category of this.formModel.category) {
       scorePersonList.push(this.createScorePersons(category));
     }
     console.log(scorePersonList);
+    console.log(this.slider.noUiSlider.get());
   }
 
   createPersons(data: any[]) {
