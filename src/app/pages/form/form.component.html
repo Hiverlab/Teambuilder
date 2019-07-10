@@ -19,6 +19,16 @@
               </div>
             </div>
           </div>
+          <div>
+            <div class="input-slider-container">
+              <div id="strengths_skills_slider" class="input-slider"></div>
+            </div>
+            <div *ngIf="slider">
+              Strengths: {{slider.noUiSlider.get()}}%
+              <br>
+              Skills: {{100 - slider.noUiSlider.get() | number : '.2'}}%
+            </div>
+          </div>
           <div class="card-body">
             <div class="custom-control custom-control-alternative custom-radio mb-3"
             *ngFor="let category of categories">
