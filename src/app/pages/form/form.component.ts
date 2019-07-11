@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { Person } from './person';
@@ -12,7 +12,7 @@ declare const google: any;
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, AfterViewInit {
+export class FormComponent implements OnInit, AfterContentInit {
 
   categories = [
     {"value": ["relationship"], "name": "Event/Workshop"},
@@ -46,7 +46,7 @@ export class FormComponent implements OnInit, AfterViewInit {
         });
   }
 
-  ngAfterViewInit(){
+  ngAfterContentInit(){
     this.slider = document.getElementById("strengths_skills_slider");
     noUiSlider.create(this.slider, {
       start: 50,
