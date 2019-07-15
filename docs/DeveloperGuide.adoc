@@ -118,12 +118,60 @@ _More details to be filled in soon..._
 The Combiner will be implemented as a component in Angular and works like a point system,
 serving as the main logic/algorithm of _TeamBuilder_.
 
-_<Insert user diagram here??>_
+.Activity Diagram of how User interacts with the Combiner
+image::combinerAlgo.png[width="600"]
 
 This is the brief algorithm of how the Combiner works:
 
-_<Will fill this up once it is confirmed>_
+1) There will be one main list of Person objects containing all employees of Hiverlab.
 
+2) User of _TeamBuilder_ will first specify the weightage (in %) of Skill Sets vs Gallup Strengths they would like the system to consider.
+   If not specified, the default value will be 50-50.
+
+.User can specify the desired weightages via the slider
+image::slider.gif[width="600"]
+
+3) User then specifies the type of the project. The list of the various types of projects are as shown below:
+
+.List of the Different Project Types
+image::projectList.png[width="600"]
+
+4) Based on the category which the user selects, generate the same number of lists as the relevant gallup strengths.
+These lists will also contain similar content to the Person objects, but instead the objects have the name,
+gallup strength value and total score, sorted in descending order based on the strength value.
+
+****
+**Example:**
+
+Select “Developing Storyhive”, 2 sorted lists for `Strategic` and `Executing` will be created.
+****
+
+.Project Types with their Associated Suitable Gallup Strengths
+image::projectGallup.png[width="600"]
+
+****
+**This part KIV:**
+
+Award ppl points based on their ranking, this contribute to `[red]#x%#` of their total score
+If have 2 strengths, then take turns in choosing from both lists(then % for each gallup strength contributes to x/2?) KIV
+****
+
+5) Afterwards, user will also choose the relevant skills they would require for this project, as shown below:
+
+.User can specify the desired skill sets required by the project
+image::skillsets.png[width="600"]
+
+6) The system will also have another list (ie. a skillmap) contain the percentages of everyone’s skills.
+Based on the skills that have been indicated by the user, the total score of all skills indicated for each individual will be tallied.
+This will account for `[red]#y%#` of the user’s total score.
+
+7) The total score for everyone will then be tabulated, where
+
+****
+`Total score = x%(gallup score) + y%(skills score) (where x + y = 100)`
+****
+
+8) Lastly, everyone will be ranked according to their total scores in descending order (highest - lowest). The first 3 will be grouped together, followed by the next 3, until 3 groups have been formed.
 
 == Documentation
 
