@@ -153,7 +153,7 @@ image::projectGallup.png[width="600"]
 **This part KIV:**
 
 Award ppl points based on their ranking, this contribute to `[red]#x%#` of their total score
-If have 2 strengths, then take turns in choosing from both lists(then % for each gallup strength contributes to x/2?) KIV
+If have 2 strengths, then take turns in choosing from both lists(then % for each gallup strength contributes to [red]#(x/2)%#?) KIV
 ****
 
 5) Afterwards, user will also choose the relevant skills they would require for this project, as shown below:
