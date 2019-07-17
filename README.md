@@ -14,6 +14,10 @@ Thus, with that, Team Builder was created with the aim of improving the allocati
 Hiverlab. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in an efficient
 manner by leveraging on one another’s strengths.
 
+## Quick Links
+
+[User Guide](https://github.com/geezlouisee/bridgewater/blob/master/docs/UserGuide.adoc)
+[Developer Guide](https://github.com/geezlouisee/bridgewater/blob/master/docs/DeveloperGuide.adoc)
 
 ## Built using...
 
