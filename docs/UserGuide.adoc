@@ -41,23 +41,55 @@ efficient manner by leveraging on one another’s strengths.
 
 All it takes is 3 simple steps to get _TeamBuilder_ up and running:
 
-1. Ensure your browser is of the latest version. You may want to see if your browser version is supported here [https://angular.io/guide/browser-support].
-2. Click here [link to deployed url] to open up TeamBuilder. Upon launching the application, you should see a screen like this:
+1) Ensure your browser is of the latest version. You may want to see if your browser version is supported here [https://angular.io/guide/browser-support].
 
-  (place holder for final start up UI)
-  //.Graphical User Interface (Upon using `summary` command)
-  //image::GUI_Diagram2.png[width="600"]
+2) Click here [link to deployed url] to open up TeamBuilder. Upon launching the application, you should see a screen like this:
 
-3. Fill up the form accordingly to start building your team!
+.Graphical User Interface (Upon opening _TeamBuilder_)
+image::homepage.png[width="600"]
+
+3) Fill up the form accordingly to start building your team!
 
 <<<
 [.text-justify]
 [[Features]]
 == Features
-This section describes the various features utilised by _TeamBuilder_.
+_TeamBuilder_ largely runs on a point system. The form is separated into 3 sections.
+Based on your input, _TeamBuilder_ will then calculate points for each individual and builds three possible combinations
+of desired teams. If you are curious to find out more about how the points are being tabulated, you may read
+_TeamBuilder's_ Developer Guide here [insert link here].
 
-=== Combiner
-After selecting your options, you will then be redirected to a page ...
+The first section allows you to decide the weightage you would like to assign to either Gallup Strengths or Skill Sets.
+Drag the slider to indicate which one you would like to prioritise more.
+
+.First Section Containing Slider
+image::slider.gif[width="600"]
+
+[NOTE]
+Default value would be 50-50 in terms of weightage of Strengths vs Skills.
+
+The second section lists down some of the few categories of projects usually received by the company.
+
+.Second Section Specifying Project Categories
+image::projectList.png[width="600"]
+
+Unlike the previous section, this section is compulsory. You can also only specify your project to be classified under
+*one* category type.
+
+The third section lists down a brief overview of the skill sets usually required by any project that is undertaken by
+the company. Indicate which skills would be useful for the project you have in mind by checking the relevant boxes.
+You may specify *more than one* skill that you deem useful.
+
+.Third Section Specifying Skill Sets
+image::skillsets.png[width="600"]
+
+Once you are done, remember to click on the submit button. You should be redirected to a new page where the three teams
+built will be displayed.
+
+<insert gif of submitting and redirecting to a new page??>
+
+To generate new teams for a different project, simply click the “Build a Team!” item in the sidebar or click on the
+Hiverlab logo on the top left hand corner of the webpage!
 
 === Upcoming Features
 
@@ -85,9 +117,9 @@ current projects are and possibly play a part in helping with the assignment of 
 [.text-justify]
 == FAQ
 
-*Q*: How do I ...?
+*Q*: -
 
-*A*: You can ...
+*A*: -
 
 == Glossary
 

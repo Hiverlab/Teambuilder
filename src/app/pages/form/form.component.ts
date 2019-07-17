@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { Person } from './person';
 import { FormModel } from './form-model';
+import { Router } from '@angular/router';
 import { ScorePerson } from './score-person';
 import noUiSlider from "noUiSlider";
 declare const google: any;
@@ -34,7 +35,8 @@ export class FormComponent implements OnInit, AfterContentInit {
   formModel = new FormModel([], false, false, false, false, false, false);
   personArray: Person[] = [];
   slider: any;
-  constructor(private dataService: DataService) { }
+
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.personData = this.dataService.getPersons()
@@ -45,6 +47,11 @@ export class FormComponent implements OnInit, AfterContentInit {
           this.createPersons(this.newData['persons']);
         });
   }
+
+  goToPage(pagename:string, parameter:string)
+    {
+      this.router.navigate([pagename]);
+    }
 
   ngAfterContentInit(){
     this.slider = document.getElementById("strengths_skills_slider");
