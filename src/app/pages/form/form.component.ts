@@ -87,7 +87,7 @@ export class FormComponent implements OnInit, AfterContentInit {
     this.personArray.sort((p1, p2) => (p1[key] < p2[key]) ? 1 : -1);
     let scorePersonArray: ScorePerson[] = [];
     for (let person of this.personArray) {
-      var scorePerson = new ScorePerson(person.name, person[key], person[key]);
+      var scorePerson = new ScorePerson(person, person[key]);
       scorePersonArray.push(scorePerson);
     }
     console.log(key, scorePersonArray);
