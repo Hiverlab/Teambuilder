@@ -6,7 +6,7 @@ export class Person {
   relationship: number;
   strategic: number;
   production: number;
-  techdev: number;
+  technical: number;
   creative: number;
   marketing: number;
   admin: number;
