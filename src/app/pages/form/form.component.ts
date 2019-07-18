@@ -50,6 +50,13 @@ export class FormComponent implements OnInit, AfterContentInit {
 
   goToPage(pagename:string, parameter:string)
     {
+      let scorePersonList: ScorePerson[][] = [];
+      for (let category of this.formModel.category) {
+        scorePersonList.push(this.createScorePersons(category));
+      }
+
+      console.log(scorePersonList);
+      console.log(this.slider.noUiSlider.get());
       this.router.navigate([pagename]);
     }
 
@@ -64,16 +71,6 @@ export class FormComponent implements OnInit, AfterContentInit {
         max: 100
       }
     });
-  }
-
-  submit() {
-    let scorePersonList: ScorePerson[][] = [];
-    for (let category of this.formModel.category) {
-      scorePersonList.push(this.createScorePersons(category));
-    }
-
-    console.log(scorePersonList);
-    console.log(this.slider.noUiSlider.get());
   }
 
   createPersons(data: any[]) {
