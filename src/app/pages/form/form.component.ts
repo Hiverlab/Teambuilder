@@ -31,11 +31,9 @@ export class FormComponent implements OnInit, AfterContentInit {
     {"name": "Others", "field": "others"}
   ]
   personData: any;
-  private newData: any;
   formModel = new FormModel([], false, false, false, false, false, false);
   personArray: Person[] = [];
   slider: any;
-  strengthsPercentage: number;
 
   constructor(private dataService: DataService, private router: Router) { }
 
@@ -43,25 +41,12 @@ export class FormComponent implements OnInit, AfterContentInit {
     this.personData = this.dataService.getPersons()
       .subscribe(
         (data: any) => {
-          this.newData = data;
-          console.log('Success!', this.newData);
-          this.createPersons(this.newData['persons']);
+          console.log('Success!', data);
+          this.createPersons(data['persons']);
         });
   }
 
-  goToPage(pagename:string, parameter:string)
-    {
-      this.strengthsPercentage = this.slider.noUiSlider.get();
-      console.log(this.strengthsPercentage);
-      let scorePersonList: ScorePerson[][] = [];
-      for (let category of this.formModel.category) {
-        scorePersonList.push(this.createScorePersons(category));
-      }
-      console.log(scorePersonList);
-      this.router.navigate([pagename]);
-    }
-
-  ngAfterContentInit(){
+  ngAfterContentInit() {
     this.slider = document.getElementById("strengths_skills_slider");
     noUiSlider.create(this.slider, {
       start: 50,
@@ -84,11 +69,29 @@ export class FormComponent implements OnInit, AfterContentInit {
     console.log(this.personArray);
   }
 
-  createScorePersons(key: string) {
+  goToPage(pagename:string, parameter:string) {
+    var sliderValues = this.getSliderValues();
+    let scorePersonList: ScorePerson[][] = [];
+    for (let category of this.formModel.category) {
+      scorePersonList.push(this.createScorePersons(category, sliderValues));
+    }
+    console.log(scorePersonList);
+    this.router.navigate([pagename]);
+  }
+
+  getSliderValues() {
+    var strengthsPercentage = this.slider.noUiSlider.get();
+    var skillsPercentage = 100 - strengthsPercentage;
+    console.log("Strengths: " + strengthsPercentage, "Skills: " + skillsPercentage);
+    return [strengthsPercentage, skillsPercentage];
+  }
+
+  createScorePersons(key: string, sliderValues: number[]) {
     this.personArray.sort((p1, p2) => (p1[key] < p2[key]) ? 1 : -1);
     let scorePersonArray: ScorePerson[] = [];
     for (let person of this.personArray) {
-      var scorePerson = new ScorePerson(person, person[key] * this.strengthsPercentage / 100);
+      var gallupScore = person[key] * sliderValues[0] / 100;
+      var scorePerson = new ScorePerson(person, gallupScore);
       scorePersonArray.push(scorePerson);
     }
     console.log(key, scorePersonArray);
