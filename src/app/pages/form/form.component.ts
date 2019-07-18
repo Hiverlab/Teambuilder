@@ -35,6 +35,7 @@ export class FormComponent implements OnInit, AfterContentInit {
   formModel = new FormModel([], false, false, false, false, false, false);
   personArray: Person[] = [];
   slider: any;
+  strengthsPercentage: number;
 
   constructor(private dataService: DataService, private router: Router) { }
 
@@ -50,13 +51,13 @@ export class FormComponent implements OnInit, AfterContentInit {
 
   goToPage(pagename:string, parameter:string)
     {
+      this.strengthsPercentage = this.slider.noUiSlider.get();
+      console.log(this.strengthsPercentage);
       let scorePersonList: ScorePerson[][] = [];
       for (let category of this.formModel.category) {
         scorePersonList.push(this.createScorePersons(category));
       }
-
       console.log(scorePersonList);
-      console.log(this.slider.noUiSlider.get());
       this.router.navigate([pagename]);
     }
 
@@ -87,7 +88,7 @@ export class FormComponent implements OnInit, AfterContentInit {
     this.personArray.sort((p1, p2) => (p1[key] < p2[key]) ? 1 : -1);
     let scorePersonArray: ScorePerson[] = [];
     for (let person of this.personArray) {
-      var scorePerson = new ScorePerson(person, person[key]);
+      var scorePerson = new ScorePerson(person, person[key] * this.strengthsPercentage / 100);
       scorePersonArray.push(scorePerson);
     }
     console.log(key, scorePersonArray);

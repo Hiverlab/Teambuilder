@@ -1,16 +1,16 @@
 export class Person {
   //field
   name: string;
-  executing: string;
-  influencing: string;
-  relationship: string;
-  strategic: string;
-  production: string;
-  techdev: string;
-  creative: string;
-  marketing: string;
-  admin: string;
-  others: string;
+  executing: number;
+  influencing: number;
+  relationship: number;
+  strategic: number;
+  production: number;
+  techdev: number;
+  creative: number;
+  marketing: number;
+  admin: number;
+  others: number;
 
   //constructor
   constructor() { }
