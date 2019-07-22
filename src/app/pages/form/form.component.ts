@@ -23,12 +23,12 @@ export class FormComponent implements OnInit, AfterContentInit {
     {"value": ["relationship", "influencing"], "name": "Training solution (liasing with HR dept)"}
   ]
   skills = [
-    {"name": "360 Production", "field": "production"},
-    {"name": "Technical Development", "field": "technical"},
-    {"name": "Creative", "field": "creative"},
-    {"name": "Marketing", "field": "marketing"},
-    {"name": "Admin", "field": "admin"},
-    {"name": "Others", "field": "others"}
+    {"name": "360 Production", "field": "production", "maxValue": "1100"},
+    {"name": "Technical Development", "field": "technical", "maxValue": "1200"},
+    {"name": "Creative", "field": "creative", "maxValue": "300"},
+    {"name": "Marketing", "field": "marketing", "maxValue": "400"},
+    {"name": "Admin", "field": "admin", "maxValue": "200"},
+    {"name": "Others", "field": "others", "maxValue": "600"}
   ]
   personData: any;
   formModel = new FormModel([], false, false, false, false, false, false);
@@ -70,10 +70,10 @@ export class FormComponent implements OnInit, AfterContentInit {
   }
 
   goToPage(pagename:string, parameter:string) {
-    let skillsSelected: string[] = [];
+    let skillsSelected: string[][] = [];
     for (let skill of this.skills) {
       if (this.formModel[skill["field"]]) {
-        skillsSelected.push(skill["field"]);
+        skillsSelected.push([skill["field"], skill["maxValue"]]);
       }
     }
     console.log("Skills selected: " + skillsSelected);
@@ -93,20 +93,20 @@ export class FormComponent implements OnInit, AfterContentInit {
     return [strengthsPercentage, skillsPercentage];
   }
 
-  getSkillsScore(person: Person, skillsSelected: string[]) {
+  getSkillsScore(person: Person, skillsSelected: string[][]) {
     var skillsScore = 0;
     for (let skill of skillsSelected) {
-      skillsScore += person[skill];
+      skillsScore += person[skill[0]];
     }
     return skillsScore;
   }
 
-  createScorePersons(key: string, sliderValues: number[], skillsSelected: string[]) {
+  createScorePersons(key: string, sliderValues: number[], skillsSelected: string[][]) {
     let scorePersonArray: ScorePerson[] = [];
     for (let person of this.personArray) {
       var gallupScore = person[key] * sliderValues[0] / 100;
-      // TODO: Convert skill score such that value is max y%
-      var skillsScore = this.getSkillsScore(person, skillsSelected) * sliderValues[1] / 100 / Math.max(1, skillsSelected.length);
+      var maxSkillValue = this.getMaxSkillValue(skillsSelected);
+      var skillsScore = this.getSkillsScore(person, skillsSelected) * sliderValues[1] / Math.max(1, maxSkillValue);
       console.log(person.name, "Gallup score: ", gallupScore, "Skills score: ", skillsScore);
       var scorePerson = new ScorePerson(person, gallupScore + skillsScore);
       scorePersonArray.push(scorePerson);
@@ -114,5 +114,13 @@ export class FormComponent implements OnInit, AfterContentInit {
     scorePersonArray.sort((p1, p2) => (p1.score < p2.score) ? 1 : -1);
     console.log(key, scorePersonArray);
     return scorePersonArray;
+  }
+
+  getMaxSkillValue(skillsSelected: string[][]) {
+    var maxSkillValue = 0;
+    for (let skill of skillsSelected) {
+      maxSkillValue += Number(skill[1]);
+    }
+    return maxSkillValue;
   }
 }
