@@ -173,6 +173,31 @@ This will account for `[red]#y%#` of the user’s total score.
 
 8) Lastly, everyone will be ranked according to their total scores in descending order (highest - lowest). The first 3 will be grouped together, followed by the next 3, until 3 groups have been formed.
 
+=== Adding a New Category/Skill
+
+
+.Add in your desired category/skill in `form.component.ts` in the respective array accordingly
+image::formcomponent.png[width="450"]
+
+.Add in the desired skill in `form-model.ts` accordingly
+image::formmodel.png[width="300"]
+
+.Edit `person.ts` accordingly
+image::person.png[width="300"]
+
+remember to edit any existing persons in your `.json` file accordingly
+(can refer to next section on how to edit/access the `.json` file)
+
+=== Adding a new person
+The list of employees in Hiverlab are stored as Person objects in a JSON file.
+The data includes the person's name, complete with their scores for the Gallup Strengths and skill sets respectively.
+
+1. Access `src` > `assets` > `hiverlab.json`.
+2. Add in the new person by creating a new Person object, whilst following the format below:
+
+.Edit `hiverlab.json` accordingly
+image::editpersons.png[width="500"]
+
 == Documentation
 
 We use asciidoc for writing documentation.
