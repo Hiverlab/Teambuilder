@@ -183,6 +183,7 @@ In order to add a new category, there will be quite a few files that you will ha
 .Add in your desired category in `form.component.ts` in the `categories` array accordingly
 image::formcomponent.png[width="450"]
 
+
 Remember to edit any existing persons in your `.json` file accordingly
 (You may refer to Section 4.6 on how to edit/access the `.json` file.)
 
@@ -195,21 +196,25 @@ Adding a new skill is similar to adding a new category, but the files required t
 .Add in your desired skill in `form.component.ts` in the `skills` array accordingly
 image::formcomponent.png[width="450"]
 
+
 2) Go to `form-model.ts` and add in the skill set accordingly in the constructor of `FormModel`.
 The term used should be the same as the `field` specified in the previous step. Specify the field type accordingly.
 
 .Add in the desired skill in `form-model.ts` accordingly
 image::formmodel.png[width="300"]
 
+
 3) Update the `formModel` object in line 34 of `form.component.ts` accordingly to include your newly added skill set.
 
 .Edit number of boolean parameters in line 34 of `form.component.ts` accordingly
 image::booleanarray.png[width="550"]
 
+
 4) Update the fields in `person.ts` accordingly to include your newly added skill set.
 
 .Edit `person.ts` accordingly
 image::person.png[width="300"]
+
 
 Remember to edit any existing persons in your `.json` file accordingly
 (You may refer to Section 4.6 on how to edit/access the `.json` file.)
