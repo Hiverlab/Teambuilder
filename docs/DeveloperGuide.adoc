@@ -195,6 +195,8 @@ image::person.png[width="300"]
 remember to edit any existing persons in your `.json` file accordingly
 (can refer to next section on how to edit/access the `.json` file)
 
+=== Adding a New Skill
+Adding a new skill is similar to adding a new category, but the files required to be changed are slightly different.
 
 === Adding a new person
 The list of employees in Hiverlab are stored as Person objects in a JSON file.
