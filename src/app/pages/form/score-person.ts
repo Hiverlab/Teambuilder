@@ -1,7 +1,8 @@
+import { Person } from './person';
+
 export class ScorePerson {
 	constructor(
-		public name: string,
-		public strength: number,
+		public person: Person,
 		public score: number
 	) {}
 }

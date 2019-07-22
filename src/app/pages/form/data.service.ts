@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  _url = './assets/test.json';
+  _url = './assets/hiverlab.json';
 
   constructor(private httpClient: HttpClient) { }
 
