@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TransferService } from './transfer.service';
 
 @Component({
   selector: 'app-tables',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablesComponent implements OnInit {
 
-  constructor() { }
+  data = this.transferService.getData();
+
+  constructor(private transferService: TransferService) {
+  }
 
   ngOnInit() {
   }

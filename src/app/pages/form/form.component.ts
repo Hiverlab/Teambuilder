@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
+import { TransferService } from '../tables/transfer.service';
 import { Person } from './person';
 import { FormModel } from './form-model';
 import { Router } from '@angular/router';
@@ -21,7 +22,7 @@ export class FormComponent implements OnInit, AfterContentInit {
     {"value": ["executing"], "name": "360 production"},
     {"value": ["influencing"], "name": "Presenting ideas to clients"},
     {"value": ["relationship", "influencing"], "name": "Training solution (liasing with HR dept)"}
-  ]
+  ];
   skills = [
     {"name": "360 Production", "field": "production", "maxValue": "1100"},
     {"name": "Technical Development", "field": "technical", "maxValue": "1200"},
@@ -29,13 +30,14 @@ export class FormComponent implements OnInit, AfterContentInit {
     {"name": "Marketing", "field": "marketing", "maxValue": "400"},
     {"name": "Admin", "field": "admin", "maxValue": "200"},
     {"name": "Others", "field": "others", "maxValue": "600"}
-  ]
+  ];
+  TEAM_SIZE: number = 3;
   personData: any;
   formModel = new FormModel([], false, false, false, false, false, false);
   personArray: Person[] = [];
   slider: any;
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private transferService: TransferService, private router: Router) { }
 
   ngOnInit() {
     this.personData = this.dataService.getPersons()
@@ -82,7 +84,9 @@ export class FormComponent implements OnInit, AfterContentInit {
     for (let category of this.formModel.category) {
       scorePersonList.push(this.createScorePersons(category, sliderValues, skillsSelected));
     }
-    console.log(scorePersonList);
+    let resultSet = this.createResultSet(scorePersonList);
+    let resultDisplayArray = this.createResultDisplay(resultSet);
+    this.transferService.setData(resultDisplayArray);
     this.router.navigate([pagename]);
   }
 
@@ -102,6 +106,7 @@ export class FormComponent implements OnInit, AfterContentInit {
   }
 
   createScorePersons(key: string, sliderValues: number[], skillsSelected: string[][]) {
+    console.log(key.toUpperCase());
     let scorePersonArray: ScorePerson[] = [];
     for (let person of this.personArray) {
       var gallupScore = person[key] * sliderValues[0] / 100;
@@ -111,8 +116,8 @@ export class FormComponent implements OnInit, AfterContentInit {
       var scorePerson = new ScorePerson(person, gallupScore + skillsScore);
       scorePersonArray.push(scorePerson);
     }
-    scorePersonArray.sort((p1, p2) => (p1.score < p2.score) ? 1 : -1);
-    console.log(key, scorePersonArray);
+    // Sort the array in reverse order
+    scorePersonArray.sort((p1, p2) => (p1.score > p2.score) ? 1 : -1);
     return scorePersonArray;
   }
 
@@ -122,5 +127,35 @@ export class FormComponent implements OnInit, AfterContentInit {
       maxSkillValue += Number(skill[1]);
     }
     return maxSkillValue;
+  }
+
+  createResultSet(scorePersonList: ScorePerson[][]) {
+    let resultSet = new Set();
+    while (scorePersonList[0].length > 0) {
+      for (let scorePersonArray of scorePersonList) {
+        var scorePerson = scorePersonArray.pop();
+        resultSet.add(scorePerson.person);
+      }
+    }
+    console.log(resultSet);
+    return resultSet;
+  }
+
+  createResultDisplay(resultSet: Set<Person>) {
+    let count = 0;
+    let resultDisplayArray: Person[][] = [];
+    let resultDisplayArrayElement: Person[] = [];
+    for (let person of Array.from(resultSet.values())) {
+      if (count == this.TEAM_SIZE) {
+        resultDisplayArray.push(resultDisplayArrayElement);
+        count = 0;
+        resultDisplayArrayElement = [];
+      }
+      resultDisplayArrayElement.push(person);
+      count = count + 1;
+    }
+    resultDisplayArray.push(resultDisplayArrayElement);
+    console.log(resultDisplayArray);
+    return resultDisplayArray;
   }
 }
