@@ -106,6 +106,7 @@ export class FormComponent implements OnInit, AfterContentInit {
   }
 
   createScorePersons(key: string, sliderValues: number[], skillsSelected: string[][]) {
+    console.log(key.toUpperCase());
     let scorePersonArray: ScorePerson[] = [];
     for (let person of this.personArray) {
       var gallupScore = person[key] * sliderValues[0] / 100;
