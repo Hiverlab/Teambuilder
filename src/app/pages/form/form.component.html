@@ -43,13 +43,16 @@
             <div class="row align-items-center">
               <div class="col-8">
                 <h3 class="mb-0"> What kind of category is the project intended to be? </h3>
+                <div *ngIf="projectForm.invalid">
+                  <small class="text-danger">*Category is required</small>
+                </div>
               </div>
             </div>
           </div>
           <div class="card-body">
             <div class="custom-control custom-control-alternative custom-radio mb-3"
             *ngFor="let category of categories">
-              <input name="category" class="custom-control-input" id="{{category.name}}" type="radio" [value]="category.value" [(ngModel)]="formModel.category">
+              <input name="category" class="custom-control-input" id="{{category.name}}" type="radio" [value]="category.value" [(ngModel)]="formModel.category" required>
               <label class="custom-control-label" for="{{category.name}}">{{category.name}}</label>
             </div>
           </div>
@@ -79,6 +82,6 @@
       </div>
     </div>
     <!-- Submit Button -->
-    <br> <button type="button" class="btn btn-danger btn-lg btn-block" (click)="goToPage('/tables')">Submit</button>
+    <br> <button [disabled]="!projectForm.valid" type="button" class="btn btn-danger btn-lg btn-block" (click)="goToPage('/tables')">Submit</button>
   </div>
 </form>
