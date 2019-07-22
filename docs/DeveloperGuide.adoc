@@ -171,10 +171,14 @@ This will account for `[red]#y%#` of the user’s total score.
 `Total score = x%(gallup score) + y%(skills score) (where x + y = 100)`
 ****
 
-8) Lastly, everyone will be ranked according to their total scores in descending order (highest - lowest). The first 3 will be grouped together, followed by the next 3, until 3 groups have been formed.
+8) Lastly, everyone will be ranked according to their total scores in descending order (highest - lowest).
+   The first 3 will be grouped together, followed by the next 3, until 3 groups have been formed.
 
-=== Adding a New Category/Skill
+=== Adding a New Category
+In order to add a new category, there will be quite a few files that you will have to edit:
 
+1) To add a new category, edit the array in line 18 of `form.component.ts` accordingly.
+   `name` refers to the project category, whilst `value` refers to the Gallup strengths associated with that particular category.
 
 .Add in your desired category/skill in `form.component.ts` in the respective array accordingly
 image::formcomponent.png[width="450"]
@@ -182,11 +186,15 @@ image::formcomponent.png[width="450"]
 .Add in the desired skill in `form-model.ts` accordingly
 image::formmodel.png[width="300"]
 
+.Edit number of boolean parameters in line 34 of `form.component.ts` accordingly
+image::booleanarray.png[width="550"]
+
 .Edit `person.ts` accordingly
 image::person.png[width="300"]
 
 remember to edit any existing persons in your `.json` file accordingly
 (can refer to next section on how to edit/access the `.json` file)
+
 
 === Adding a new person
 The list of employees in Hiverlab are stored as Person objects in a JSON file.
