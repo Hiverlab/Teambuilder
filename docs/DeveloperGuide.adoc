@@ -134,7 +134,7 @@ image::slider.gif[width="600"]
 3) User then specifies the type of the project. The list of the various types of projects are as shown below:
 
 .List of the Different Project Types
-image::projectList.png[width="600"]
+image::projectList.png[width="400"]
 
 4) Based on the category which the user selects, generate the same number of lists as the relevant gallup strengths.
 These lists will also contain similar content to the Person objects, but instead the objects have the name,
@@ -159,7 +159,7 @@ If have 2 strengths, then take turns in choosing from both lists(then % for each
 5) Afterwards, user will also choose the relevant skills they would require for this project, as shown below:
 
 .User can specify the desired skill sets required by the project
-image::skillsets.png[width="600"]
+image::skillsets.png[width="400"]
 
 6) The system will also have another list (ie. a skillmap) contain the percentages of everyone’s skills.
 Based on the skills that have been indicated by the user, the total score of all skills indicated for each individual will be tallied.
