@@ -5,8 +5,9 @@
     "\\src\\app",
     "\\src\\app\\components",
     "\\src\\app\\pages",
-    "\\src\\app\\pages\\form"
+    "\\src\\app\\pages\\form",
+    "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\pages\\form\\person.ts",
+  "SelectedNode": "\\src\\assets\\hiverlab.json",
   "PreviewInSolutionExplorer": false
 }

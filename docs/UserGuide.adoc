@@ -102,6 +102,15 @@ Users would be able to specify other variables such as number of people they wou
 instead of the default value of 3 people generated per team for now. This will allow for more flexibility in what kinds
 of teams can be generated using this system.
 
+==== Interactive Radar Chart `[yellow]#[coming in v2.0]#`
+To make the form more user friendly on front-end side, we can explore including an interactive radar chart for users to
+adjust their desired percentages for each category. Usage of relative percentages?
+This will help to make it more intuitive to users regarding the ... , especially for those that are not familiar with the
+Gallup Strengths(?)
+
+.Example of a Radar Chart
+image::radarchart.png[width="400"]
+
 ==== Enhanced Algorithm `[yellow]#[coming in v2.0]#`
 For future iterations of this product, we can explore to have a more complicated algorithm that takes into account how
 busy each individual is - ie. refrain from overloading people with too many projects. Additionally, we can also take

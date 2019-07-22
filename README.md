@@ -2,7 +2,7 @@
 
 ![version](https://img.shields.io/badge/version-1.1.0-blue.svg)![license][license-badge]
 
-Team Builder was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
+_TeamBuilder_ was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
 companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency and algorithmic
 decision when it comes to managing a company.
 
@@ -10,8 +10,8 @@ One such tool that inspired us was the “Baseball cards”, a profiling tool th
 characteristics. Along with a “combiner” feature, the tool will be able to compare and analyses the key characteristics
 of each employee. It will help you to find the right person for the job based on their strengths.
 
-Thus, with that, Team Builder was created with the aim of improving the allocation of human resources to projects at
-Hiverlab. With the Gallup StrengthsFinder test in mind, Team Builder aims to delegate desirable team members in an efficient
+Thus, with that, _TeamBuilder_ was created with the aim of improving the allocation of human resources to projects at
+Hiverlab. With the Gallup StrengthsFinder test in mind, _TeamBuilder_ aims to delegate desirable team members in an efficient
 manner by leveraging on one another’s strengths.
 
 ## Quick Links

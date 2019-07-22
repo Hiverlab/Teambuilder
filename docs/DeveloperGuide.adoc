@@ -134,7 +134,7 @@ image::slider.gif[width="600"]
 3) User then specifies the type of the project. The list of the various types of projects are as shown below:
 
 .List of the Different Project Types
-image::projectList.png[width="600"]
+image::projectList.png[width="400"]
 
 4) Based on the category which the user selects, generate the same number of lists as the relevant gallup strengths.
 These lists will also contain similar content to the Person objects, but instead the objects have the name,
@@ -159,7 +159,7 @@ If have 2 strengths, then take turns in choosing from both lists(then % for each
 5) Afterwards, user will also choose the relevant skills they would require for this project, as shown below:
 
 .User can specify the desired skill sets required by the project
-image::skillsets.png[width="600"]
+image::skillsets.png[width="400"]
 
 6) The system will also have another list (ie. a skillmap) contain the percentages of everyone’s skills.
 Based on the skills that have been indicated by the user, the total score of all skills indicated for each individual will be tallied.
@@ -171,7 +171,58 @@ This will account for `[red]#y%#` of the user’s total score.
 `Total score = x%(gallup score) + y%(skills score) (where x + y = 100)`
 ****
 
-8) Lastly, everyone will be ranked according to their total scores in descending order (highest - lowest). The first 3 will be grouped together, followed by the next 3, until 3 groups have been formed.
+8) Lastly, everyone will be ranked according to their total scores in descending order (highest - lowest).
+   The first 3 will be grouped together, followed by the next 3, until 3 groups have been formed.
+
+=== Adding a New Project Category
+In order to add a new category, there will be quite a few files that you will have to edit:
+
+1) To add a new category, edit the `categories` array in line 18 of `form.component.ts` accordingly.
+   `name` refers to the project category, whilst `value` refers to the Gallup strengths associated with that particular category.
+
+.Add in your desired category in `form.component.ts` in the respective array accordingly
+image::formcomponent.png[width="450"]
+
+Remember to edit any existing persons in your `.json` file accordingly
+(You may refer to Section 4.6 on how to edit/access the `.json` file.)
+
+=== Adding a New Skill
+Adding a new skill is similar to adding a new category, but the files required to be changed are slightly different.
+
+1) To add a new category, edit the `skills` array in line 25 of `form.component.ts` accordingly.
+   `name` refers to the specific skill, `field` refers to the term used to refer to the skill set in your code, and `maxValue` refers to the total score tallied for the particular skill set.
+
+.Add in your desired category in `form.component.ts` in the respective array accordingly
+image::formcomponent.png[width="450"]
+
+2) Go to `form-model.ts` and add in the skill set accordingly in the constructor of `FormModel`.
+The term used should be the same as the `field` specified in the previous step. Specify the field type accordingly.
+
+.Add in the desired skill in `form-model.ts` accordingly
+image::formmodel.png[width="300"]
+
+3) Update the `formModel` object in line 34 of `form.component.ts` accordingly to include your newly added skill set.
+
+.Edit number of boolean parameters in line 34 of `form.component.ts` accordingly
+image::booleanarray.png[width="550"]
+
+4) Update the fields in `person.ts` accordingly to include your newly added skill set.
+
+.Edit `person.ts` accordingly
+image::person.png[width="300"]
+
+Remember to edit any existing persons in your `.json` file accordingly
+(You may refer to Section 4.6 on how to edit/access the `.json` file.)
+
+=== Adding a new person
+The list of employees in Hiverlab are stored as Person objects in a JSON file.
+The data includes the person's name, complete with their scores for the Gallup Strengths and skill sets respectively.
+
+1. Access `src` > `assets` > `hiverlab.json`.
+2. Add in the new person by creating a new Person object, whilst following the format below:
+
+.Edit `hiverlab.json` accordingly
+image::editpersons.png[width="500"]
 
 == Documentation
 
@@ -297,5 +348,5 @@ e2e (End-to-end) testing is used, which essentially is simulated user testing.
 [.text-justify]
 == Glossary
 
-//Records::
-//The list of all entries stored in the application
+Project Category:
+The category that a project will be classified under eg. An Event/Workshop
