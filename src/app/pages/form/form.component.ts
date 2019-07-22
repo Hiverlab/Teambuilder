@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
+import { TransferService } from '../tables/transfer.service';
 import { Person } from './person';
 import { FormModel } from './form-model';
 import { Router } from '@angular/router';
@@ -36,7 +37,7 @@ export class FormComponent implements OnInit, AfterContentInit {
   personArray: Person[] = [];
   slider: any;
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private transferService: TransferService, private router: Router) { }
 
   ngOnInit() {
     this.personData = this.dataService.getPersons()
@@ -84,7 +85,8 @@ export class FormComponent implements OnInit, AfterContentInit {
       scorePersonList.push(this.createScorePersons(category, sliderValues, skillsSelected));
     }
     let resultSet = this.createResultSet(scorePersonList);
-    this.createResultDisplay(resultSet);
+    let resultDisplayArray = this.createResultDisplay(resultSet);
+    this.transferService.setData(resultDisplayArray);
     this.router.navigate([pagename]);
   }
 
