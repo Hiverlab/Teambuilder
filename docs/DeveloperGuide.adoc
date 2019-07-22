@@ -180,7 +180,7 @@ In order to add a new category, there will be quite a few files that you will ha
 1) To add a new category, edit the `categories` array in line 18 of `form.component.ts` accordingly.
    `name` refers to the project category, whilst `value` refers to the Gallup strengths associated with that particular category.
 
-.Add in your desired category in `form.component.ts` in the respective array accordingly
+.Add in your desired category in `form.component.ts` in the `categories` array accordingly
 image::formcomponent.png[width="450"]
 
 Remember to edit any existing persons in your `.json` file accordingly
@@ -189,10 +189,10 @@ Remember to edit any existing persons in your `.json` file accordingly
 === Adding a New Skill
 Adding a new skill is similar to adding a new category, but the files required to be changed are slightly different.
 
-1) To add a new category, edit the `skills` array in line 25 of `form.component.ts` accordingly.
+1) To add a new skill, edit the `skills` array in line 25 of `form.component.ts` accordingly.
    `name` refers to the specific skill, `field` refers to the term used to refer to the skill set in your code, and `maxValue` refers to the total score tallied for the particular skill set.
 
-.Add in your desired category in `form.component.ts` in the respective array accordingly
+.Add in your desired skill in `form.component.ts` in the `skills` array accordingly
 image::formcomponent.png[width="450"]
 
 2) Go to `form-model.ts` and add in the skill set accordingly in the constructor of `FormModel`.
