@@ -104,9 +104,8 @@ of teams can be generated using this system.
 
 ==== Interactive Radar Chart `[yellow]#[coming in v2.0]#`
 To make the form more user friendly on front-end side, we can explore including an interactive radar chart for users to
-adjust their desired percentages for each category. Usage of relative percentages?
-This will help to make it more intuitive to users regarding the ... , especially for those that are not familiar with the
-Gallup Strengths(?)
+adjust their desired percentages for each category. Relative percentages can be used, and this will help to make the interface
+more intuitive for users, especially for those that are not familiar with the Gallup Strengths.
 
 .Example of a Radar Chart
 image::radarchart.png[width="400"]

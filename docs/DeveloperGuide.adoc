@@ -180,8 +180,9 @@ In order to add a new category, there will be quite a few files that you will ha
 1) To add a new category, edit the `categories` array in line 18 of `form.component.ts` accordingly.
    `name` refers to the project category, whilst `value` refers to the Gallup strengths associated with that particular category.
 
-.Add in your desired category in `form.component.ts` in the respective array accordingly
-image::formcomponent.PNG[width="450"]
+.Add in your desired category in `form.component.ts` in the `categories` array accordingly
+image::formcomponent.png[width="450"]
+
 
 Remember to edit any existing persons in your `.json` file accordingly
 (You may refer to Section 4.6 on how to edit/access the `.json` file.)
@@ -189,27 +190,31 @@ Remember to edit any existing persons in your `.json` file accordingly
 === Adding a New Skill
 Adding a new skill is similar to adding a new category, but the files required to be changed are slightly different.
 
-1) To add a new category, edit the `skills` array in line 25 of `form.component.ts` accordingly.
+1) To add a new skill, edit the `skills` array in line 25 of `form.component.ts` accordingly.
    `name` refers to the specific skill, `field` refers to the term used to refer to the skill set in your code, and `maxValue` refers to the total score tallied for the particular skill set.
 
-.Add in your desired category in `form.component.ts` in the respective array accordingly
-image::formcomponent.PNG[width="450"]
+.Add in your desired skill in `form.component.ts` in the `skills` array accordingly
+image::formcomponent.png[width="450"]
+
 
 2) Go to `form-model.ts` and add in the skill set accordingly in the constructor of `FormModel`.
 The term used should be the same as the `field` specified in the previous step. Specify the field type accordingly.
 
 .Add in the desired skill in `form-model.ts` accordingly
-image::formmodel.PNG[width="300"]
+image::formmodel.png[width="300"]
+
 
 3) Update the `formModel` object in line 34 of `form.component.ts` accordingly to include your newly added skill set.
 
 .Edit number of boolean parameters in line 34 of `form.component.ts` accordingly
-image::booleanarray.PNG[width="550"]
+image::booleanarray.png[width="550"]
+
 
 4) Update the fields in `person.ts` accordingly to include your newly added skill set.
 
 .Edit `person.ts` accordingly
-image::person.PNG[width="300"]
+image::person.png[width="300"]
+
 
 Remember to edit any existing persons in your `.json` file accordingly
 (You may refer to Section 4.6 on how to edit/access the `.json` file.)
@@ -222,7 +227,7 @@ The data includes the person's name, complete with their scores for the Gallup S
 2. Add in the new person by creating a new Person object, whilst following the format below:
 
 .Edit `hiverlab.json` accordingly
-image::editpersons.PNG[width="500"]
+image::editpersons.png[width="500"]
 
 == Documentation
 
