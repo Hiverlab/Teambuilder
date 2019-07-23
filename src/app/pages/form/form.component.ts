@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './data.service';
 import { TransferService } from '../tables/transfer.service';
@@ -14,7 +14,7 @@ declare const google: any;
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, AfterContentInit {
+export class FormComponent implements OnInit {
 
   categories = [
     {"value": ["relationship"], "name": "Event/Workshop"},
@@ -46,20 +46,8 @@ export class FormComponent implements OnInit, AfterContentInit {
         (data: any) => {
           console.log('Success! Json data loaded.', data);
           this.createPersons(data['persons']);
+          this.initializeSliders();
         });
-  }
-
-  ngAfterContentInit() {
-    this.strengthsSkillsSlider = document.getElementById("strengths_skills_slider");
-    noUiSlider.create(this.strengthsSkillsSlider, {
-      start: 50,
-      connect: [true, false],
-      step: 0.25,
-      range: {
-        min: 0,
-        max: 100
-      }
-    });
   }
 
   createPersons(data: any[]) {
@@ -70,6 +58,19 @@ export class FormComponent implements OnInit, AfterContentInit {
       console.log(person);
     }
     console.log(this.personArray);
+  }
+
+  initializeSliders() {
+    this.strengthsSkillsSlider = document.getElementById("strengths_skills_slider");
+    noUiSlider.create(this.strengthsSkillsSlider, {
+      start: 50,
+      connect: [true, false],
+      step: 0.25,
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
 
     this.teamSizeSlider = document.getElementById("team_size_slider");
     noUiSlider.create(this.teamSizeSlider, {
