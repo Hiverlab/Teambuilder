@@ -16,13 +16,40 @@
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
-              <tr *ngIf="data">
-                <th *ngFor="let person of data[0]; let i = index" scope="col">Member {{i + 1}}</th>
+              <tr *ngIf="actualTeam">
+                <th *ngFor="let person of actualTeam[0]; let i = index" scope="col">Member {{i + 1}}</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let dataElement of data">
-                <td *ngFor="let person of dataElement">
+              <tr *ngFor="let element of actualTeam">
+                <td *ngFor="let person of element">
+                  {{person.name}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Reserve Members</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr *ngIf="reserveTeam">
+                <th *ngFor="let person of reserveTeam; let i = index" scope="col">Member {{i + 1}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td *ngFor="let person of reserveTeam">
                   {{person.name}}
                 </td>
               </tr>

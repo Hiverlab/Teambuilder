@@ -167,8 +167,11 @@ export class FormComponent implements OnInit, AfterContentInit {
       resultDisplayArrayElement.push(person);
       count = count + 1;
     }
-    resultDisplayArray.push(resultDisplayArrayElement);
+    if (resultDisplayArrayElement.length == this.TEAM_SIZE) {
+      resultDisplayArray.push(resultDisplayArrayElement);
+      resultDisplayArrayElement = [];
+    }
     console.log(resultDisplayArray);
-    return resultDisplayArray;
+    return {"actual": resultDisplayArray, "reserve": resultDisplayArrayElement};
   }
 }
