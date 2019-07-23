@@ -35,7 +35,8 @@ export class FormComponent implements OnInit, AfterContentInit {
   personData: any;
   formModel = new FormModel([], false, false, false, false, false, false);
   personArray: Person[] = [];
-  slider: any;
+  strengthsSkillsSlider: any;
+  teamSizeSlider: any;
 
   constructor(private dataService: DataService, private transferService: TransferService, private router: Router) { }
 
@@ -49,8 +50,8 @@ export class FormComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.slider = document.getElementById("strengths_skills_slider");
-    noUiSlider.create(this.slider, {
+    this.strengthsSkillsSlider = document.getElementById("strengths_skills_slider");
+    noUiSlider.create(this.strengthsSkillsSlider, {
       start: 50,
       connect: [true, false],
       step: 0.25,
@@ -69,6 +70,17 @@ export class FormComponent implements OnInit, AfterContentInit {
       console.log(person);
     }
     console.log(this.personArray);
+
+    this.teamSizeSlider = document.getElementById("team_size_slider");
+    noUiSlider.create(this.teamSizeSlider, {
+      start: this.TEAM_SIZE,
+      connect: [true, false],
+      step: 1,
+      range: {
+        min: 1,
+        max: this.personArray.length
+      }
+    });
   }
 
   goToPage(pagename:string, parameter:string) {
@@ -91,7 +103,8 @@ export class FormComponent implements OnInit, AfterContentInit {
   }
 
   getSliderValues() {
-    var strengthsPercentage = this.slider.noUiSlider.get();
+    this.TEAM_SIZE = this.teamSizeSlider.noUiSlider.get();
+    var strengthsPercentage = this.strengthsSkillsSlider.noUiSlider.get();
     var skillsPercentage = 100 - strengthsPercentage;
     console.log("Strengths: " + strengthsPercentage, "Skills: " + skillsPercentage);
     return [strengthsPercentage, skillsPercentage];
