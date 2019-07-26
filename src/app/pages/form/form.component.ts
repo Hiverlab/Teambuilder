@@ -84,7 +84,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  goToPage(pagename:string, parameter:string) {
+  goToPage(pagename:string) {
     let skillsSelected: string[][] = [];
     for (let skill of this.skills) {
       if (this.formModel[skill["field"]]) {
