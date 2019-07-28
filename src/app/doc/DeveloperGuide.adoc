@@ -1,0 +1,357 @@
+= TeamBuilder - Developer Guide
+:site-section: DeveloperGuide
+:toc:
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:warning-caption: :warning:
+:experimental:
+endif::[]
+:repoURL: https://github.com/geezlouisee/bridgewater/tree/master
+:bl: pass:[ +]
+
+By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
+
+[.text-justify]
+== Introduction
+This Bridgewater tool _TeamBuilder_ was inspired by office tools adopted by Bridgewater Associates, one of the largest
+investment management companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency
+and algorithmic decision when it comes to managing a company.
+
+One such tool that inspired us was the “Baseball cards”, a profiling tool that highlights a person’s strengths and their
+characteristics. Along with a “combiner” feature, the tool will be able to compare and analyse the key characteristics
+of each employee. It will help you to find the right person for the job based on their strengths.
+
+Thus, with that, _TeamBuilder_ was created with the aim of improving the allocation of human resources to projects at
+Hiverlab Pte Ltd. With the Gallup StrengthsFinder test in mind, _TeamBuilder_ aims to delegate desirable team members in
+an efficient manner by leveraging on one another’s strengths.
+
+This developer guide specifies the design and implementation of _TeamBuilder_. The intended audience of this document is
+the developers, designers and software testers of our application.
+
+[.text-justify]
+== Setting Up
+
+Before starting, ensure that you check you have the following installed:
+
+* Node.js
+* Npm (Node package manager)
+* Angular
+
+If you have installed all of the following, you may skip the following steps listed below.
+
+1. Install Node.js and npm by typing npm install  in your terminal/console window. This step is important as it will be
+needed in the installation of Angular. If you are interested, the link to Angular’s documentation is included here.
+2. To install Angular, enter `npm install -g @angular/cli`
+3. Run the application by going into the root folder `cd my-app`
+4. Enter `ng serve --open`
+5. Lastly, download the project from Github https://github.com/geezlouisee/bridgewater[here].
+
+[NOTE]
+If you encounter an error pointing towards `node_modules/bootstrap/scss/_forms.scss` (line 247), remove the last argument
+so you should get something like this:
+
+.Edit the code accordingly to only contain 2 arguments
+image::forms.png[width="600"]
+
+<<<
+[.text-justify]
+== Design
+
+_TeamBuilder_ is designed to be a web app, implemented using an Angular framework. More details on its implementation will
+be provided in Chapter 4.
+
+[[Design-Architecture]]
+=== Architecture
+
+Angular is largely based on the Model-View-Controller (MVC) framework.
+We decided to choose this framework as it makes it convenient for front-end testing for _TeamBuilder_.
+
+.Architecture Diagram of _TeamBuilder_
+image::architecture.png[width="600"]
+
+The *_Architecture Diagram_* above explains the high-level design of _TeamBuilder_.
+Given below is a quick overview of each component.
+
+* *Model*: Corresponds to all data-related logic that the user works with.
+* *View*: Used for the UI logic of the application. This includes the html/css files.
+* *Controller*: Acts as an interface between Model and View components, it manipulates data using the Model component
+and interact with the Views to render the final output. This includes the service component in our application.
+
+Additionally, due to the Angular framework, the architecture of _TeamBuilder_ is also largely component-based.
+Each component consists of some metadata, an HTML template and logic - all of which controls a patch of screen called a view.
+
+Below shows a brief diagram consisting of all the components in this application.
+
+<insert a diagram here>
+
+<<<
+[.text-justify]
+== Implementation
+
+TeamBuilder was made using HTML/CSS/TS and is largely implemented based on the Angular framework.
+This framework was chosen to make the code cleaner, as compared to not using any Javascript frameworks at all.
+
+This section describes in detail the implementation of certain features in _TeamBuilder_.
+
+=== HTML/CSS
+TeamBuilder was made using a free template that is already supported by Angular by Creative Tim.
+Their source code can be found https://demos.creative-tim.com/paper-kit-2-angular/#/home[here].
+
+=== Angular/TS
+Angular primarily uses TypeScript (TS), which is a superset of JavaScript (JS) that supports type safety and tooling.
+TypeScript has to be “transpiled” into JavaScript using the tsc compiler, as browsers cannot execute TypeScript directly.
+
+Although TypeScript is not widely supported by most browsers, the polyfills.ts file that you see in the root `src` folder
+helps to fill in the gaps between the JS needed by the system features versus the JS version supported by most browsers,
+ECMAScript5 (ES5).
+
+_More details to be filled in soon..._
+
+=== Combiner
+The Combiner will be implemented as a component in Angular and works like a point system,
+serving as the main logic/algorithm of _TeamBuilder_.
+
+.Activity Diagram of how User interacts with the Combiner
+image::combinerAlgo.png[width="600"]
+
+This is the brief algorithm of how the Combiner works:
+
+1) There will be one main list of Person objects containing all employees of Hiverlab.
+
+2) User of _TeamBuilder_ will first specify the weightage (in %) of Skill Sets vs Gallup Strengths they would like the system to consider.
+   If not specified, the default value will be 50-50.
+
+.User can specify the desired weightages via the slider
+image::slider.gif[width="600"]
+
+3) User then specifies the type of the project. The list of the various types of projects are as shown below:
+
+.List of the Different Project Types
+image::projectList.png[width="400"]
+
+4) Based on the category which the user selects, generate the same number of lists as the relevant gallup strengths.
+These lists will also contain similar content to the Person objects, but instead the objects have the name,
+gallup strength value and total score, sorted in descending order based on the strength value.
+
+****
+**Example:**
+
+Select “Developing Storyhive”, 2 sorted lists for `Strategic` and `Executing` will be created.
+****
+
+.Project Types with their Associated Suitable Gallup Strengths
+image::projectGallup.png[width="600"]
+
+****
+**This part KIV:**
+
+Award ppl points based on their ranking, this contribute to `[red]#x%#` of their total score
+If have 2 strengths, then take turns in choosing from both lists(then % for each gallup strength contributes to [red]#(x/2)%#?) KIV
+****
+
+5) Afterwards, user will also choose the relevant skills they would require for this project, as shown below:
+
+.User can specify the desired skill sets required by the project
+image::skillsets.png[width="400"]
+
+6) The system will also have another list (ie. a skillmap) contain the percentages of everyone’s skills.
+Based on the skills that have been indicated by the user, the total score of all skills indicated for each individual will be tallied.
+This will account for `[red]#y%#` of the user’s total score.
+
+7) The total score for everyone will then be tabulated, where
+
+****
+`Total score = x%(gallup score) + y%(skills score) (where x + y = 100)`
+****
+
+8) Lastly, everyone will be ranked according to their total scores in descending order (highest - lowest).
+   The first 3 will be grouped together, followed by the next 3, until 3 groups have been formed.
+
+=== Adding a New Project Category
+In order to add a new category, there will be quite a few files that you will have to edit:
+
+1) To add a new category, edit the `categories` array in line 18 of `form.component.ts` accordingly.
+   `name` refers to the project category, whilst `value` refers to the Gallup strengths associated with that particular category.
+
+.Add in your desired category in `form.component.ts` in the `categories` array accordingly
+image::formcomponent.png[width="450"]
+
+
+Remember to edit any existing persons in your `.json` file accordingly
+(You may refer to Section 4.6 on how to edit/access the `.json` file.)
+
+=== Adding a New Skill
+Adding a new skill is similar to adding a new category, but the files required to be changed are slightly different.
+
+1) To add a new skill, edit the `skills` array in line 25 of `form.component.ts` accordingly.
+   `name` refers to the specific skill, `field` refers to the term used to refer to the skill set in your code, and `maxValue` refers to the total score tallied for the particular skill set.
+
+.Add in your desired skill in `form.component.ts` in the `skills` array accordingly
+image::formcomponent.png[width="450"]
+
+
+2) Go to `form-model.ts` and add in the skill set accordingly in the constructor of `FormModel`.
+The term used should be the same as the `field` specified in the previous step. Specify the field type accordingly.
+
+.Add in the desired skill in `form-model.ts` accordingly
+image::formmodel.png[width="300"]
+
+
+3) Update the `formModel` object in line 34 of `form.component.ts` accordingly to include your newly added skill set.
+
+.Edit number of boolean parameters in line 34 of `form.component.ts` accordingly
+image::booleanarray.png[width="550"]
+
+
+4) Update the fields in `person.ts` accordingly to include your newly added skill set.
+
+.Edit `person.ts` accordingly
+image::person.png[width="300"]
+
+
+Remember to edit any existing persons in your `.json` file accordingly
+(You may refer to Section 4.6 on how to edit/access the `.json` file.)
+
+=== Adding a new person
+The list of employees in Hiverlab are stored as Person objects in a JSON file.
+The data includes the person's name, complete with their scores for the Gallup Strengths and skill sets respectively.
+
+1. Access `src` > `assets` > `hiverlab.json`.
+2. Add in the new person by creating a new Person object, whilst following the format below:
+
+.Edit `hiverlab.json` accordingly
+image::editpersons.png[width="500"]
+
+== Documentation
+
+We use asciidoc for writing documentation.
+
+[NOTE]
+We chose asciidoc over Markdown because asciidoc, although a bit more complex than Markdown, provides more flexibility in formatting.
+
+
+[.text-justify]
+=== Editing Documentation
+
+See <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to learn how to render `.adoc` files locally to preview the end result of your edits.
+Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your `.adoc` files in real-time.
+
+=== Publishing Documentation
+See <<UsingTravis#deploying-github-pages, UsingTravis.adoc>> to learn how to deploy GitHub Pages using Travis.
+
+=== Converting Documentation to PDF format
+We use https://www.google.com/chrome/browser/desktop[Google Chrome] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
+
+Here are the steps to convert the project documentation files to PDF format.
+
+.  Follow the instructions in <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to convert the AsciiDoc files in the `docs/` directory to HTML format.
+.  Go to your generated HTML files in the `build/docs` folder, right click on them and select menu:Open With[Google Chrome].
+.  Within Chrome, click on the btn:[Print] option in Chrome's menu.
+.  Set the destination to btn:[Save as PDF], then click btn:[Save] to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.
+
+.Saving documentation as PDF files in Chrome
+.Saving project documentation files to PDF format
+image::chrome_save_as_pdf.png[width="300"]
+
+<<<
+[[Docs-SiteWideDocSettings]]
+=== Site-wide Documentation Settings
+{bl}
+The link:{repoURL}/build.gradle[`build.gradle`] file specifies some project-specific https://asciidoctor.org/docs/user-manual/#attributes[_asciidoc attributes_] which affects how all documentation files within this project are rendered.
+
+[TIP]
+Attributes left unset in the `build.gradle` file will use their *default value*, if any.
+
+{bl}
+
+[cols="1,2a,1", options="header"]
+.List of site-wide attributes
+|===
+|Attribute name |Description |Default value
+
+|`site-name`
+|The name of the website.
+If set, the name will be displayed near the top of the page.
+|_not set_
+
+|`site-githuburl`
+|URL to the site's repository on https://github.com[[blue]#GitHub#].
+Setting this will add a "View on GitHub" link in the navigation bar.
+|_not set_
+
+|`site-seedu`
+|Define this attribute if the project is an official SE-EDU project.
+This will render the SE-EDU navigation bar at the top of the page, and add some SE-EDU-specific navigation items.
+|_not set_
+
+|===
+
+<<<
+[[Docs-PerFileDocSettings]]
+=== Per-file Documentation Settings
+{bl}
+Each `.adoc` file may also specify some file-specific https://asciidoctor.org/docs/user-manual/#attributes[[blue]_asciidoc attributes_] which affects how the file is rendered.
+
+Asciidoctor's https://asciidoctor.org/docs/user-manual/#builtin-attributes[_built-in attributes_] may be specified and used as well.
+
+[TIP]
+Attributes left unset in `.adoc` files will use their *default value*, if any.
+
+{bl}
+
+[cols="1,2a,1", options="header"]
+.List of per-file attributes, excluding Asciidoctor's built-in attributes
+|===
+|Attribute name |Description |Default value
+
+|`site-section`
+|Site section that the document belongs to.
+This will cause the associated item in the navigation bar to be highlighted.
+One of: `UserGuide`, `DeveloperGuide`, ``LearningOutcomes``{asterisk}, `AboutUs`, `ContactUs`
+
+_{asterisk} Official SE-EDU projects only_
+|_not set_
+
+|`no-site-header`
+|Set this attribute to remove the site navigation bar.
+|_not set_
+
+|===
+
+<<<
+=== Site Template
+{bl}
+The files in link:{repoURL}/docs/stylesheets[`docs/stylesheets`] are the https://developer.mozilla.org/en-US/docs/Web/CSS[CSS stylesheets] of the site.
+You can modify them to change some properties of the site's design.
+
+The files in link:{repoURL}/docs/templates[`docs/templates`] controls the rendering of `.adoc` files into HTML5.
+These template files are written in a mixture of https://www.ruby-lang.org[Ruby] and http://slim-lang.com[Slim].
+
+[WARNING]
+====
+Modifying the template files in link:{repoURL}/docs/templates[`docs/templates`] requires some knowledge and experience with Ruby and Asciidoctor's API.
+You should only modify them if you need greater control over the site's layout than what stylesheets can provide.
+====
+
+<<<
+[.text-justify]
+[[Testing]]
+== Testing
+e2e (End-to-end) testing is used, which essentially is simulated user testing.
+
+<May need to write about how to test with their own .json files??>
+
+[appendix]
+<<<
+[.text-justify]
+== Glossary
+
+Project Category:
+The category that a project will be classified under eg. An Event/Workshop

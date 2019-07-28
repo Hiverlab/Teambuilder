@@ -1,0 +1,135 @@
+= TeamBuilder - User Guide
+:site-section: UserGuide
+:toc:
+:toclevels: 3
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+:xrefstyle: full
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+endif::[]
+:repoURL: https://github.com/geezlouisee/bridgewater/main
+:bl: pass:[ +]
+
+By: `Hiverlab Pte Ltd`      Since: `July 2019`      Licence: `MIT`
+
+[.text-justify]
+== Introduction
+
+_TeamBuilder_ was inspired by office tools adopted by Bridgewater Associates, one of the largest investment management
+companies in America. Their CEO and founder, Ray Dalio, heavily emphasises on radical transparency and algorithmic
+decision when it comes to managing a company.
+
+One such tool that inspired us was the “Baseball cards”, a profiling tool that highlights a person’s strengths and their
+characteristics. Along with a “combiner” feature, the tool will be able to compare and analyse the key characteristics
+of each employee. It will help you to find the right person for the job based on their strengths.
+
+Thus, with that, _TeamBuilder_ was created with the aim of improving the allocation of human resources to projects at
+Hiverlab. With the Gallup StrengthsFinder test in mind, _TeamBuilder_  aims to delegate desirable team members in an
+efficient manner by leveraging on one another’s strengths.
+
+// tag::quickstart[]
+<<<
+[.text-justify]
+== Quick Start
+
+All it takes is 3 simple steps to get _TeamBuilder_ up and running:
+
+1) Ensure your browser is of the latest version. You may want to see if your browser version is supported here [https://angular.io/guide/browser-support].
+
+2) Click here [link to deployed url] to open up TeamBuilder. Upon launching the application, you should see a screen like this:
+
+.Graphical User Interface (Upon opening _TeamBuilder_)
+image::homepage.png[width="600"]
+
+3) Fill up the form accordingly to start building your team!
+
+<<<
+[.text-justify]
+[[Features]]
+== Features
+_TeamBuilder_ largely runs on a point system. The form is separated into 3 sections.
+Based on your input, _TeamBuilder_ will then calculate points for each individual and builds three possible combinations
+of desired teams. If you are curious to find out more about how the points are being tabulated, you may read
+_TeamBuilder's_ Developer Guide here [insert link here].
+
+The first section allows you to decide the weightage you would like to assign to either Gallup Strengths or Skill Sets.
+Drag the slider to indicate which one you would like to prioritise more.
+
+.First Section Containing Slider
+image::slider.gif[width="600"]
+
+[NOTE]
+Default value would be 50-50 in terms of weightage of Strengths vs Skills.
+
+The second section lists down some of the few categories of projects usually received by the company.
+
+.Second Section Specifying Project Categories
+image::projectList.png[width="600"]
+
+Unlike the previous section, this section is compulsory. You can also only specify your project to be classified under
+*one* category type.
+
+The third section lists down a brief overview of the skill sets usually required by any project that is undertaken by
+the company. Indicate which skills would be useful for the project you have in mind by checking the relevant boxes.
+You may specify *more than one* skill that you deem useful.
+
+.Third Section Specifying Skill Sets
+image::skillsets.png[width="600"]
+
+Once you are done, remember to click on the submit button. You should be redirected to a new page where the three teams
+built will be displayed.
+
+<insert gif of submitting and redirecting to a new page??>
+
+To generate new teams for a different project, simply click the “Build a Team!” item in the sidebar or click on the
+Hiverlab logo on the top left hand corner of the webpage!
+
+=== Upcoming Features
+
+==== Login System `[yellow]#[coming in v2.0]#`
+Implementing a login system will definitely make _TeamBuilder_ more secure.
+This is especially important as personal information is concerned.
+
+==== More sophisticated requirements when filling up form `[yellow]#[coming in v2.0]#`
+Users would be able to specify other variables such as number of people they would want to have in a team,
+instead of the default value of 3 people generated per team for now. This will allow for more flexibility in what kinds
+of teams can be generated using this system.
+
+==== Interactive Radar Chart `[yellow]#[coming in v2.0]#`
+To make the form more user friendly on front-end side, we can explore including an interactive radar chart for users to
+adjust their desired percentages for each category. Relative percentages can be used, and this will help to make the interface
+more intuitive for users, especially for those that are not familiar with the Gallup Strengths.
+
+.Example of a Radar Chart
+image::radarchart.png[width="400"]
+
+==== Enhanced Algorithm `[yellow]#[coming in v2.0]#`
+For future iterations of this product, we can explore to have a more complicated algorithm that takes into account how
+busy each individual is - ie. refrain from overloading people with too many projects. Additionally, we can also take
+into consideration the chemistry/compatibility between members if possible. However, this extension would probably
+require the help of artificial intelligence (AI).
+
+==== Integration of Trello board into the system `[yellow]#[coming in v2.0]#`
+Since the team mostly relies on the Trello Board when it comes to keeping track of projects, it is desirable if the
+company’s Trello boards can be integrated into the system itself. This will allow for easier referral of what the
+current projects are and possibly play a part in helping with the assignment of teams.
+
+<<<
+[.text-justify]
+== FAQ
+
+*Q*: -
+
+*A*: -
+
+== Glossary
+
+Trello::
+A web-based list-making application that is used to keep track of projects and current workload.
