@@ -87,10 +87,6 @@ and interact with the Views to render the final output. This includes the servic
 Additionally, due to the Angular framework, the architecture of _TeamBuilder_ is also largely component-based.
 Each component consists of some metadata, an HTML template and logic - all of which controls a patch of screen called a view.
 
-Below shows a brief diagram consisting of all the components in this application.
-
-<insert a diagram here>
-
 <<<
 [.text-justify]
 == Implementation
@@ -111,8 +107,6 @@ TypeScript has to be “transpiled” into JavaScript using the tsc compiler, as
 Although TypeScript is not widely supported by most browsers, the polyfills.ts file that you see in the root `src` folder
 helps to fill in the gaps between the JS needed by the system features versus the JS version supported by most browsers,
 ECMAScript5 (ES5).
-
-_More details to be filled in soon..._
 
 === Combiner
 The Combiner will be implemented as a component in Angular and works like a point system,
@@ -152,8 +146,8 @@ image::projectGallup.png[width="600"]
 ****
 **This part KIV:**
 
-Award ppl points based on their ranking, this contribute to `[red]#x%#` of their total score
-If have 2 strengths, then take turns in choosing from both lists(then % for each gallup strength contributes to [red]#(x/2)%#?) KIV
+Award ppl points based on their ranking, this contribute to `[red]#x%#` of their total score.
+If have 2 strengths, then take turns in choosing from both lists (ie. % for each gallup strength contributes to [red]#(x/2)%#)
 ****
 
 5) Afterwards, user will also choose the relevant skills they would require for this project, as shown below:
@@ -269,8 +263,6 @@ The link:{repoURL}/build.gradle[`build.gradle`] file specifies some project-spec
 [TIP]
 Attributes left unset in the `build.gradle` file will use their *default value*, if any.
 
-{bl}
-
 [cols="1,2a,1", options="header"]
 .List of site-wide attributes
 |===
@@ -303,8 +295,6 @@ Asciidoctor's https://asciidoctor.org/docs/user-manual/#builtin-attributes[_buil
 
 [TIP]
 Attributes left unset in `.adoc` files will use their *default value*, if any.
-
-{bl}
 
 [cols="1,2a,1", options="header"]
 .List of per-file attributes, excluding Asciidoctor's built-in attributes
@@ -346,12 +336,12 @@ You should only modify them if you need greater control over the site's layout t
 == Testing
 e2e (End-to-end) testing is used, which essentially is simulated user testing.
 
-<May need to write about how to test with their own .json files??>
+You may also want to write your own `.json` files if you would like to do your own testing.
 
 [appendix]
 <<<
 [.text-justify]
 == Glossary
 
-Project Category:
+*Project Category*:
 The category that a project will be classified under eg. An Event/Workshop
