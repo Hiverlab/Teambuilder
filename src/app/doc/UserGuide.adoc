@@ -87,7 +87,7 @@ Lastly, you may also adjust the slider accordingly to determine how many people 
 The range is from 1 to 12.
 
 .Last Section Specifying Team Size
-image::teamMembers.PNG[width="600"]
+image::teamMembers.png[width="600"]
 
 Once you are done, remember to click on the submit button. You should be redirected to a new page where the three teams
 built will be displayed in a table form.
