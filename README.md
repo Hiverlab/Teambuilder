@@ -16,8 +16,8 @@ manner by leveraging on one another’s strengths.
 
 ## Quick Links
 
-[User Guide](https://github.com/geezlouisee/bridgewater/blob/master/src/app/doc/UserGuide.adoc)
-[Developer Guide](https://github.com/geezlouisee/bridgewater/blob/master/src/app/doc/DeveloperGuide.adoc)
+[User Guide](https://github.com/Hiverlab/Teambuilder/blob/master/src/app/doc/UserGuide.adoc)
+[Developer Guide](https://github.com/Hiverlab/Teambuilder/blob/master/src/app/doc/DeveloperGuide.adoc)
 
 ## Built using...
 
