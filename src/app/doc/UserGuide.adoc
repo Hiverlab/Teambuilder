@@ -54,10 +54,10 @@ image::homepage.png[width="600"]
 [.text-justify]
 [[Features]]
 == Features
-_TeamBuilder_ largely runs on a point system. The form is separated into 3 sections.
+_TeamBuilder_ largely runs on a point system. The form is separated into 4 sections.
 Based on your input, _TeamBuilder_ will then calculate points for each individual and builds three possible combinations
 of desired teams. If you are curious to find out more about how the points are being tabulated, you may read
-_TeamBuilder's_ Developer Guide here [insert link here].
+_TeamBuilder's_ Developer Guide.
 
 The first section allows you to decide the weightage you would like to assign to either Gallup Strengths or Skill Sets.
 Drag the slider to indicate which one you would like to prioritise more.
@@ -83,10 +83,14 @@ You may specify *more than one* skill that you deem useful.
 .Third Section Specifying Skill Sets
 image::skillsets.png[width="600"]
 
-Once you are done, remember to click on the submit button. You should be redirected to a new page where the three teams
-built will be displayed.
+Lastly, you may also adjust the slider accordingly to determine how many people you want to have in a team.
+The range is from 1 to 12.
 
-<insert gif of submitting and redirecting to a new page??>
+.Last Section Specifying Team Size
+image::teamMembers.PNG[width="600"]
+
+Once you are done, remember to click on the submit button. You should be redirected to a new page where the three teams
+built will be displayed in a table form.
 
 To generate new teams for a different project, simply click the “Build a Team!” item in the sidebar or click on the
 Hiverlab logo on the top left hand corner of the webpage!
@@ -96,11 +100,6 @@ Hiverlab logo on the top left hand corner of the webpage!
 ==== Login System `[yellow]#[coming in v2.0]#`
 Implementing a login system will definitely make _TeamBuilder_ more secure.
 This is especially important as personal information is concerned.
-
-==== More sophisticated requirements when filling up form `[yellow]#[coming in v2.0]#`
-Users would be able to specify other variables such as number of people they would want to have in a team,
-instead of the default value of 3 people generated per team for now. This will allow for more flexibility in what kinds
-of teams can be generated using this system.
 
 ==== Interactive Radar Chart `[yellow]#[coming in v2.0]#`
 To make the form more user friendly on front-end side, we can explore including an interactive radar chart for users to
@@ -120,14 +119,6 @@ require the help of artificial intelligence (AI).
 Since the team mostly relies on the Trello Board when it comes to keeping track of projects, it is desirable if the
 company’s Trello boards can be integrated into the system itself. This will allow for easier referral of what the
 current projects are and possibly play a part in helping with the assignment of teams.
-
-<<<
-[.text-justify]
-== FAQ
-
-*Q*: -
-
-*A*: -
 
 == Glossary
 
